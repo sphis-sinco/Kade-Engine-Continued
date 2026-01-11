@@ -13,6 +13,7 @@
 - Added hmm file (for ez installing of libraries)
 
 ## Changed
+- 💖 "Reset Settings" is now a full reset of ALL your settings
 - 💖 Pressing your RESET key in freeplay with repopulate the song data
 - Freeplay songdata population now only happens if when entering freeplay there is no song data to be found
 - Song pitching works with non-cpp platforms now
