@@ -39,11 +39,6 @@ class OptionCata extends FlxSprite
 		alpha = 0.4;
 
 		options = _options;
-		for (opt in options)
-		{
-			if (!opt.availibleInPause && OptionsMenu.isInPause)
-				options.remove(opt);
-		}
 
 		optionObjects = new FlxTypedGroup();
 

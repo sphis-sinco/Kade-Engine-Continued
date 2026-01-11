@@ -40,8 +40,8 @@ class OutdatedSubState extends MusicBeatState
 		add(kadeLogo);
 
 		var txt:FlxText = new FlxText(0, 0, FlxG.width,
-			"Your K.E.C. is outdated!\nYou are on "
-			+ MainMenuState.ENGINE_VERSION
+			"Your Kade Engine is outdated!\nYou are on "
+			+ MainMenuState.kadeEngineVer
 			+ "\nwhile the most recent version is "
 			+ needVer
 			+ "."
@@ -51,9 +51,9 @@ class OutdatedSubState extends MusicBeatState
 			+ "\n\nPress Space to view the full changelog and update\nor ESCAPE to ignore this",
 			32);
 
-		if (MainMenuState.ENGINE_VERSION_NIGHTLY != "")
+		if (MainMenuState.nightly != "")
 			txt.text = "You are on\n"
-				+ MainMenuState.ENGINE_VERSION
+				+ MainMenuState.kadeEngineVer
 				+ "\nWhich is a PRE-RELEASE BUILD!"
 				+ "\n\nReport all bugs to the author of the pre-release.\nSpace/Escape ignores this.";
 
@@ -95,11 +95,16 @@ class OutdatedSubState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (controls.ACCEPT && MainMenuState.ENGINE_VERSION_NIGHTLY == "")
+		if (controls.ACCEPT && MainMenuState.nightly == "")
 		{
-			fancyOpenURL("https://github.com/sphis-sinco/Kade-Engine-Continued/releases/latest");
+			fancyOpenURL("https://kadedev.github.io/Kade-Engine/changelogs/changelog-" + needVer);
 		}
-		else if (controls.ACCEPT || controls.BACK)
+		else if (controls.ACCEPT)
+		{
+			leftState = true;
+			FlxG.switchState(new MainMenuState());
+		}
+		if (controls.BACK)
 		{
 			leftState = true;
 			FlxG.switchState(new MainMenuState());

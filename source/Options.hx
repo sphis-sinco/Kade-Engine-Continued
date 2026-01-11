@@ -10,19 +10,10 @@ import openfl.Lib;
 
 class Option
 {
-	public function new(availibleInPause:Bool, desc:String)
+	public function new()
 	{
 		display = updateDisplay();
-
-		if (OptionsMenu.isInPause && !availibleInPause)
-			description = "This option cannot be toggled in the pause menu.";
-		else
-			description = desc;
-		
-		this.availibleInPause = availibleInPause;
 	}
-
-	public var availibleInPause:Bool = true;
 
 	private var description:String = "";
 	private var display:String;
@@ -82,7 +73,8 @@ class DFJKOption extends Option
 {
 	public function new()
 	{
-		super(true, "Edit your keybindings");
+		super();
+		description = "Edit your keybindings";
 	}
 
 	public override function press():Bool
@@ -102,7 +94,8 @@ class UpKeybind extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -133,7 +126,8 @@ class DownKeybind extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -164,7 +158,8 @@ class RightKeybind extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -195,7 +190,8 @@ class LeftKeybind extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -226,7 +222,8 @@ class PauseKeybind extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -257,7 +254,8 @@ class ResetBind extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -288,7 +286,8 @@ class MuteBind extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -319,7 +318,8 @@ class VolUpBind extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -350,7 +350,8 @@ class VolDownBind extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -381,7 +382,8 @@ class FullscreenBind extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptType = true;
 	}
 
@@ -412,7 +414,8 @@ class SickMSOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc + " (Press R to reset)");
+		super();
+		description = desc + " (Press R to reset)";
 		acceptType = true;
 	}
 
@@ -448,7 +451,8 @@ class GoodMsOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc + " (Press R to reset)");
+		super();
+		description = desc + " (Press R to reset)";
 		acceptType = true;
 	}
 
@@ -484,7 +488,8 @@ class BadMsOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc + " (Press R to reset)");
+		super();
+		description = desc + " (Press R to reset)";
 		acceptType = true;
 	}
 
@@ -520,7 +525,8 @@ class ShitMsOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc + " (Press R to reset)");
+		super();
+		description = desc + " (Press R to reset)";
 		acceptType = true;
 	}
 
@@ -556,7 +562,8 @@ class CpuStrums extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function left():Bool
@@ -583,7 +590,8 @@ class GraphicLoading extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function press():Bool
@@ -604,7 +612,8 @@ class EditorRes extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function left():Bool
@@ -631,7 +640,11 @@ class DownscrollOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -659,7 +672,8 @@ class GhostTapOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function left():Bool
@@ -685,7 +699,11 @@ class AccuracyOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -713,7 +731,11 @@ class SongPositionOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -741,7 +763,11 @@ class DistractionsAndEffectsOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -769,7 +795,11 @@ class Colour extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -797,7 +827,11 @@ class StepManiaOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -825,7 +859,8 @@ class ResetButtonOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function press():Bool
@@ -845,7 +880,8 @@ class InstantRespawn extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function press():Bool
@@ -865,7 +901,11 @@ class FlashingLightsOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -893,7 +933,11 @@ class AntialiasingOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -921,7 +965,11 @@ class MissSoundsOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -949,7 +997,8 @@ class ShowInput extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function left():Bool
@@ -975,7 +1024,11 @@ class Judgement extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 		acceptValues = true;
 	}
 
@@ -998,7 +1051,8 @@ class FPSOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function left():Bool
@@ -1025,7 +1079,8 @@ class ScoreScreen extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function press():Bool
@@ -1045,7 +1100,8 @@ class FPSCapOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptValues = true;
 	}
 
@@ -1095,7 +1151,8 @@ class ScrollSpeedOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 		acceptValues = true;
 	}
 
@@ -1144,7 +1201,8 @@ class RainbowFPSOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function left():Bool
@@ -1170,7 +1228,8 @@ class NPSDisplayOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function left():Bool
@@ -1196,7 +1255,8 @@ class ReplayOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function press():Bool
@@ -1216,7 +1276,11 @@ class AccuracyDOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -1244,16 +1308,15 @@ class CustomizeGameplay extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, #if CUSTOMIZE_GAMEPLAY desc #else "This option cannot be used right now cause its broken" #end);
-
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function press():Bool
 	{
-		#if !CUSTOMIZE_GAMEPLAY
-		return false;
-		#end
-
 		if (OptionsMenu.isInPause)
 			return false;
 		trace("switch");
@@ -1263,11 +1326,7 @@ class CustomizeGameplay extends Option
 
 	private override function updateDisplay():String
 	{
-		#if CUSTOMIZE_GAMEPLAY
 		return "Customize Gameplay";
-		#else
-		return "Customize Gameplay (BROKEN RIGHT NOW, BEING FIXED)";
-		#end
 	}
 }
 
@@ -1275,7 +1334,11 @@ class WatermarkOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -1304,7 +1367,8 @@ class OffsetMenu extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function press():Bool
@@ -1331,7 +1395,11 @@ class OffsetThing extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -1367,7 +1435,8 @@ class BotPlay extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		super();
+		description = desc;
 	}
 
 	public override function left():Bool
@@ -1392,7 +1461,11 @@ class CamZoomOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -1420,7 +1493,11 @@ class JudgementCounter extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -1448,7 +1525,11 @@ class MiddleScrollOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -1476,7 +1557,11 @@ class NoteskinOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -1511,7 +1596,11 @@ class HealthBarOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function left():Bool
@@ -1539,7 +1628,11 @@ class LaneUnderlayOption extends Option
 {
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 		acceptValues = true;
 	}
 
@@ -1576,7 +1669,8 @@ class DebugMode extends Option
 {
 	public function new(desc:String)
 	{
-		super(true, desc);
+		description = desc;
+		super();
 	}
 
 	public override function press():Bool
@@ -1597,7 +1691,11 @@ class LockWeeksOption extends Option
 
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function press():Bool
@@ -1630,7 +1728,11 @@ class ResetScoreOption extends Option
 
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function press():Bool
@@ -1671,7 +1773,11 @@ class ResetSettings extends Option
 
 	public function new(desc:String)
 	{
-		super(false, desc);
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function press():Bool

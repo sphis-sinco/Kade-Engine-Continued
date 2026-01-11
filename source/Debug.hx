@@ -170,7 +170,7 @@ class Debug
 
 	/**
 	 * The game runs this function immediately when it starts.
-	 * Use onGameStart() if it can wait until a little later.
+	 		* Use onGameStart() if it can wait until a little later.
 	 */
 	public static function onInitProgram()
 	{
@@ -208,8 +208,8 @@ class Debug
 		logInfo("This is a RELEASE build.");
 		#end
 		logInfo('HaxeFlixel version: ${Std.string(FlxG.VERSION)}');
-		logInfo('Friday Night Funkin\' version: ${MainMenuState.GAME_VERSION}');
-		logInfo('KadeEngine version: ${MainMenuState.ENGINE_VERSION}');
+		logInfo('Friday Night Funkin\' version: ${MainMenuState.gameVer}');
+		logInfo('KadeEngine version: ${MainMenuState.kadeEngineVer}');
 	}
 
 	/**
@@ -338,7 +338,7 @@ class Debug
 			return inArray;
 
 		// Format the position ourselves.
-		var output:Array<Dynamic> = ['(${pos.className}:${pos.lineNumber} / ${pos.methodName}): '];
+		var output:Array<Dynamic> = ['(${pos.className}/${pos.methodName}#${pos.lineNumber}): '];
 
 		return output.concat(inArray);
 	}
@@ -437,7 +437,7 @@ class DebugLogWriter
 	public function write(input:Array<Dynamic>, logLevel = 'TRACE'):Void
 	{
 		var ts = FlxStringUtil.formatTime(getTime(), true);
-		var msg = '$ts [${logLevel}] ${input.join('')}';
+		var msg = '$ts [${logLevel.rpad(' ', 5)}] ${input.join('')}';
 
 		#if FEATURE_FILESYSTEM
 		if (active && file != null)

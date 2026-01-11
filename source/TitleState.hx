@@ -59,7 +59,6 @@ class TitleState extends MusicBeatState
 		FlxG.autoPause = false;
 
 		FlxG.save.bind('kadeenginecontinued', 'Macohi');
-		// FlxG.save.mergeFrom('funkin', 'ninjamuffin99', true, false);
 
 		PlayerSettings.init();
 
@@ -292,16 +291,16 @@ class TitleState extends MusicBeatState
 			{
 				// Get current version of Kade Engine
 
-				var http = new haxe.Http("https://raw.githubusercontent.com/sphis-sinco/Kade-Engine-Continued/master/version.downloadMe");
+				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
 				var returnedData:Array<String> = [];
 
 				http.onData = function(data:String)
 				{
 					returnedData[0] = data.substring(0, data.indexOf(';'));
 					returnedData[1] = data.substring(data.indexOf('-'), data.length);
-					if (!MainMenuState.ENGINE_VERSION.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
+					if (!MainMenuState.kadeEngineVer.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
 					{
-						trace('outdated lmao! ' + returnedData[0] + ' != ' + MainMenuState.ENGINE_VERSION);
+						trace('outdated lmao! ' + returnedData[0] + ' != ' + MainMenuState.kadeEngineVer);
 						OutdatedSubState.needVer = returnedData[0];
 						OutdatedSubState.currChanges = returnedData[1];
 						FlxG.switchState(new OutdatedSubState());
@@ -469,5 +468,4 @@ class TitleState extends MusicBeatState
 
 			skippedIntro = true;
 		}
-	}
-}
+	
