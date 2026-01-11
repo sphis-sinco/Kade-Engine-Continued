@@ -1944,19 +1944,19 @@ class ChartingState extends MusicBeatState
 					{
 						#if desktop
 						// The __backend.handle attribute is only available on native.
-						lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, speed);
+						FlxG.sound.music.pitch = speed;
 						try
 						{
 							// We need to make CERTAIN vocals exist and are non-empty
 							// before we try to play them. Otherwise the game crashes.
 							if (vocals != null && vocals.length > 0)
 							{
-								lime.media.openal.AL.sourcef(vocals._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, speed);
+								vocals.pitch = speed;
 							}
 						}
 						catch (e)
 						{
-							// Debug.logTrace("failed to pitch vocals (probably cuz they don't exist)");
+							Debug.logWarn("failed to pitch vocals (probably cuz they don't exist)");
 						}
 						#end
 					}
@@ -2807,7 +2807,7 @@ class ChartingState extends MusicBeatState
 
 				var sustainVis:FlxSprite = new FlxSprite(curSelectedNoteObject.x + (GRID_SIZE / 2),
 					curSelectedNoteObject.y + GRID_SIZE).makeGraphic(8,
-					Math.floor((getYfromStrum(curSelectedNoteObject.strumTime + curSelectedNote[2]) * zoomFactor) - curSelectedNoteObject.y));
+						Math.floor((getYfromStrum(curSelectedNoteObject.strumTime + curSelectedNote[2]) * zoomFactor) - curSelectedNoteObject.y));
 				curSelectedNoteObject.sustainLength = curSelectedNote[2];
 				Debug.logTrace("new sustain " + curSelectedNoteObject.sustainLength);
 				curSelectedNoteObject.noteCharterObject = sustainVis;

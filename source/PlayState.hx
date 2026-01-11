@@ -912,8 +912,7 @@ class PlayState extends MusicBeatState
 			add(judgementCounter);
 		}
 
-		replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (PlayStateChangeables.useDownscroll ? 100 : -100), 0, "REPLAY",
-			20);
+		replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (PlayStateChangeables.useDownscroll ? 100 : -100), 0, "REPLAY", 20);
 		replayTxt.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		replayTxt.borderSize = 4;
 		replayTxt.borderQuality = 2;
@@ -1511,15 +1510,9 @@ class PlayState extends MusicBeatState
 				trace("pitched to " + songMultiplier);
 		}*/
 
-		#if cpp
-		@:privateAccess
-		{
-			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
-			if (vocals.playing)
-				lime.media.openal.AL.sourcef(vocals._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
-		}
+		FlxG.sound.music.pitch = songMultiplier;
+		vocals.pitch = songMultiplier;
 		trace("pitched inst and vocals to " + songMultiplier);
-		#end
 
 		for (i in 0...unspawnNotes.length)
 			if (unspawnNotes[i].strumTime < startTime)
@@ -1969,14 +1962,11 @@ class PlayState extends MusicBeatState
 		FlxG.sound.music.time = Conductor.songPosition * songMultiplier;
 		vocals.time = FlxG.sound.music.time;
 
-		@:privateAccess
+		if (FlxG.sound.music.playing)
 		{
-			#if desktop
-			// The __backend.handle attribute is only available on native.
-			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+			FlxG.sound.music.pitch = songMultiplier;
 			if (vocals.playing)
-				lime.media.openal.AL.sourcef(vocals._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
-			#end
+				vocals.pitch = songMultiplier;
 		}
 
 		#if FEATURE_DISCORD
@@ -2064,15 +2054,12 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		#if cpp
 		if (FlxG.sound.music.playing)
-			@:privateAccess
 		{
-			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+			FlxG.sound.music.pitch = songMultiplier;
 			if (vocals.playing)
-				lime.media.openal.AL.sourcef(vocals._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+				vocals.pitch = songMultiplier;
 		}
-		#end
 
 		if (generatedMusic)
 		{
