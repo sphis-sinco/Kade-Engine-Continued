@@ -132,10 +132,9 @@ class MainMenuState extends MusicBeatState
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, 'Funkin: ' + gameVer, 12);
 		if (Main.watermarks)
 		{
-			versionShit.y -= 10;
-			versionShit.text += "Kade Engine: " + kadeEngineVer;
-			versionShit.y -= 10;
-			versionShit.text += "Indie Edition: " + indieEditionVer;
+			versionShit.y -= 20;
+			versionShit.text += "\nKade Engine: " + kadeEngineVer;
+			versionShit.text += "\nIndie Edition: " + indieEditionVer;
 		}
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
