@@ -81,6 +81,7 @@ class FreeplayState extends MusicBeatState
 		if (list.length > 0 && songs.length > 0)
 		{
 			trace('LIST NOT BLANK : SKIPPING START REPOPULATION');
+			cacheSongs();
 		}
 		else
 		{
@@ -273,6 +274,13 @@ class FreeplayState extends MusicBeatState
 			trace('loaded diffs for ' + songId);
 			FreeplayState.songs.push(meta);
 
+			cacheSongs();
+		}
+	}
+
+	static function cacheSongs()
+	{
+		for (songId => diffs in songData)
 			#if FEATURE_FILESYSTEM
 			sys.thread.Thread.create(() ->
 			{
@@ -281,7 +289,6 @@ class FreeplayState extends MusicBeatState
 			#else
 			FlxG.sound.cache(Paths.inst(songId));
 			#end
-		}
 	}
 
 	public function addSong(songName:String, weekNum:Int, songCharacter:String)
