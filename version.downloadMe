@@ -1,4 +1,5 @@
 1.9;
-- Rebranded Kade Engine
+- Added new `properties` field to character JSONS
+- Disabled Customize Gameplay option (broken for some reason sry!)
 - Converted all characters to character JSONS!
-- Added new "properties" field to character JSONS
+- Rebranded to "Kade Engine Continued"
