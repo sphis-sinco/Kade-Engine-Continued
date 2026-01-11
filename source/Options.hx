@@ -18,6 +18,7 @@ class Option
 			description = "This option cannot be toggled in the pause menu.";
 		else
 			description = desc;
+		
 		this.availibleInPause = availibleInPause;
 	}
 
