@@ -1,8 +1,10 @@
 # 1.9 (1/11/2026)
 ## Fixed
+- Fixed Song inst caching not being threaded
 - The engine now compiles with the latest libraries
 
 ## Added
+- You can now press your Restart Keybind in freeplay to re-populate the song data
 - Added new `properties` field to character JSONS
     - Has a `packer` field, a booelean that tells if you're using a packer atlas, so it's for spirit.
     - Has a `pixel` field, a booelean that tells if its a pixel stage character
@@ -11,6 +13,7 @@
 - Added hmm file (for ez installing of libraries)
 
 ## Changed
+- Freeplay song data population happens at title state now ONLY WHEN THE LIST IS EMPTY
 - Song pitching works with non-cpp platforms now
 - Converted all characters to character JSONS!
 - Changed location of character offset files to `assets/data/characters/`
