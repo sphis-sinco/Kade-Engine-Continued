@@ -75,9 +75,11 @@ class FreeplayState extends MusicBeatState
 	override function create()
 	{
 		clean();
+		list = CoolUtil.coolTextFile(Paths.txt('data/freeplaySonglist'));
 
 		cached = false;
 
+		populateSongData();
 		PlayState.inDaPlay = false;
 		PlayState.currentSong = "bruh";
 
@@ -215,7 +217,7 @@ class FreeplayState extends MusicBeatState
 	/**
 	 * Load song data from the data files.
 	 */
-	public static function populateSongData()
+	static function populateSongData()
 	{
 		cached = false;
 		list = CoolUtil.coolTextFile(Paths.txt('data/freeplaySonglist'));
@@ -401,17 +403,11 @@ class FreeplayState extends MusicBeatState
 		}
 
 		if (FlxG.sound.music.playing)
-		{
 			FlxG.sound.music.pitch = rate;
-		}
 
 		if (controls.BACK)
 		{
 			FlxG.switchState(new MainMenuState());
-		}
-		if (controls.RESET)
-		{
-			FreeplayState.populateSongData();
 		}
 
 		if (accepted)

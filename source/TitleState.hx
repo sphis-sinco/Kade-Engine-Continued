@@ -92,9 +92,6 @@ class TitleState extends MusicBeatState
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
-		if (FreeplayState.list == [])
-			FreeplayState.populateSongData();
-
 		trace('hello');
 
 		// DEBUG BULLSHIT
