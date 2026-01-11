@@ -39,7 +39,13 @@ class MainMenuState extends MusicBeatState
 
 	public static var nightly:String = "";
 
-	public static var kadeEngineVer:String = "1.9" + nightly;
+	public static var kadeEngineVer(get, never):String;
+
+	static function get_kadeEngineVer():String
+	{
+		return Application.current.meta.get('version') + nightly;
+	}
+
 	public static var gameVer:String = "0.2.7.1";
 
 	var magenta:FlxSprite;
@@ -122,7 +128,12 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollow, null, 0.60 * (60 / FlxG.save.data.fpsCap));
 
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, gameVer, 12);
+		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, 'Funkin: ' + gameVer, 12);
+		if (Main.watermarks)
+		{
+			versionShit.y -= 10;
+			versionShit.text += "Indie Edition: " + kadeEngineVer;
+		}
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);

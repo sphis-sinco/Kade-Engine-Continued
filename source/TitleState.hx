@@ -58,13 +58,11 @@ class TitleState extends MusicBeatState
 
 		FlxG.autoPause = false;
 
-		FlxG.save.bind('kadeenginecontinued', 'Macohi');
-		if (FlxG.save.data.lastVersion != null)
-			FlxG.save.mergeDataFrom('funkin', 'ninjamuffin99', true, false);
+		FlxG.save.bind('indieedition', 'Macohi');
 
 		PlayerSettings.init();
 
-		KadeEngineData.initSave();
+		SaveData.initSave();
 
 		KeyBinds.keyCheck();
 		// It doesn't reupdate the list before u restart rn lmao
@@ -136,7 +134,7 @@ class TitleState extends MusicBeatState
 		if (Main.watermarks)
 		{
 			logoBl = new FlxSprite(-150, 1500);
-			logoBl.frames = Paths.getSparrowAtlas('KadeEngineLogoBumpin');
+			logoBl.frames = Paths.getSparrowAtlas('watermarkLogoBumpin');
 		}
 		else
 		{
@@ -392,10 +390,16 @@ class TitleState extends MusicBeatState
 			case 0:
 				deleteCoolText();
 			case 1:
-				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+				if (Main.watermarks)
+					createCoolText(['macohi']);
+				else
+					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 			// credTextShit.visible = true;
 			case 3:
-				addMoreText('present');
+				if (Main.watermarks)
+					addMoreText('presents');
+				else
+					addMoreText('present');
 			// credTextShit.text += '\npresent...';
 			// credTextShit.addText();
 			case 4:
@@ -405,12 +409,12 @@ class TitleState extends MusicBeatState
 			// credTextShit.screenCenter();
 			case 5:
 				if (Main.watermarks)
-					createCoolText(['Kade Engine', 'by']);
+					createCoolText(['Indie Edition', 'by']);
 				else
 					createCoolText(['In Partnership', 'with']);
 			case 7:
 				if (Main.watermarks)
-					addMoreText('KadeDeveloper');
+					addMoreText('Macohi');
 				else
 				{
 					addMoreText('Newgrounds');

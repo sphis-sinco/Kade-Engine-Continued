@@ -75,4 +75,4 @@ This is a coding error. It occurs when you attempt to call a function on an obje
 
 ## Visual C++ Runtime Library: Assertion Failed!
 
-I get this error all the time, but I haven't the foggiest what's causing it. The program will often work if you abort the program and start it again.
+Kade got this error all the time, but he haven't the foggiest what's causing it. The program will often work if you abort the program and start it again.

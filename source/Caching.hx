@@ -53,7 +53,7 @@ class Caching extends MusicBeatState
 
 		PlayerSettings.init();
 
-		KadeEngineData.initSave();
+		SaveData.initSave();
 
 		// It doesn't reupdate the list before u restart rn lmao
 		NoteskinHelpers.updateNoteskins();
@@ -73,7 +73,7 @@ class Caching extends MusicBeatState
 		text.alignment = FlxTextAlign.CENTER;
 		text.alpha = 0;
 
-		kadeLogo = new FlxSprite(FlxG.width / 2, FlxG.height / 2).loadGraphic(Paths.loadImage('KadeEngineLogo'));
+		kadeLogo = new FlxSprite(FlxG.width / 2, FlxG.height / 2).loadGraphic(Paths.loadImage('watermarkLogo'));
 		kadeLogo.x -= kadeLogo.width / 2;
 		kadeLogo.y -= kadeLogo.height / 2 + 100;
 		text.y -= kadeLogo.height / 2 - 125;

@@ -1793,7 +1793,7 @@ class ResetSettings extends Option
 		
 		FlxG.save.erase();
 
-		KadeEngineData.initSave();
+		SaveData.initSave();
 		confirm = false;
 		trace('All settings have been reset');
 		display = updateDisplay();

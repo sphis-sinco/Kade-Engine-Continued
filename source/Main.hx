@@ -95,7 +95,7 @@ class Main extends Sprite
 		ModCore.initialize();
 
 		#if !mobile
-		fpsCounter = new KadeEngineFPS(10, 3, 0xFFFFFF);
+		fpsCounter = new FPSText(10, 3, 0xFFFFFF);
 		bitmapFPS = ImageOutline.renderImage(fpsCounter, 1, 0x000000, true);
 		bitmapFPS.smoothing = true;
 		#end
@@ -110,11 +110,13 @@ class Main extends Sprite
 
 		// Finish up loading debug tools.
 		Debug.onGameStart();
+
+		Application.current.window.title = 'Funkin Indie${#if debug '*' #else '' #end} ${MainMenuState.kadeEngineVer}';
 	}
 
 	var game:FlxGame;
 
-	var fpsCounter:KadeEngineFPS;
+	var fpsCounter:FPSText;
 
 	// taken from forever engine, cuz optimization very pog.
 	// thank you shubs :)

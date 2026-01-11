@@ -3,12 +3,15 @@
 ![Key and Table Of Contents are two different things. You're still correct though. I think..](https://user-images.githubusercontent.com/68293280/118520877-49692a80-b6ef-11eb-95fa-f2061fa6ad39.png)
 
 ---
+
 ### How to Access The Chart Editor
+
 To access the Chart Editor, simply begin a level. Once the countdown finishes, press `7` on your keyboard. The screen will wipe, and
 you will end up in the Chart Editor.
 
 ## Basics
-To place or delete notes, click on a square in the Charting Grid. 
+
+To place or delete notes, click on a square in the Charting Grid.
 
 To navigate the current section, use the scroll wheel or `W` and `S`.
 To go to the previous or next section, press `A` or `Left Arrow` and `D` or `Right Arrow` respectively.
@@ -24,7 +27,7 @@ To test the chart's sync and see if the notes are aligned with the audio, press 
 
 ![ass sets haha funny one ninjamuffin](https://user-images.githubusercontent.com/68293280/118521235-ac5ac180-b6ef-11eb-9d59-10cdbeadb4f0.png)
 
-The Assets tab is where you can change level data such as the background, player characters, and note skin. 
+The Assets tab is where you can change level data such as the background, player characters, and note skin.
 Everything here is labelled, so this tab should be easy to use.
 
 ### Note Data
@@ -61,7 +64,6 @@ You can also reset the whole chart to start over again, and reload the chart or 
 ## Position Info
 
 ![statistics sucks](https://user-images.githubusercontent.com/68293280/118525571-30af4380-b6f4-11eb-8a49-b7d5af6dba28.png)
-
 
 In the top right of the chart editor, you can find information about your position in the chart, such as your current Section, Step, and how long the song that accompanies the track is.
 

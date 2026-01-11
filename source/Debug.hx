@@ -209,7 +209,7 @@ class Debug
 		#end
 		logInfo('HaxeFlixel version: ${Std.string(FlxG.VERSION)}');
 		logInfo('Friday Night Funkin\' version: ${MainMenuState.gameVer}');
-		logInfo('KadeEngine version: ${MainMenuState.kadeEngineVer}');
+		logInfo('Indie Edition version: ${MainMenuState.kadeEngineVer}');
 	}
 
 	/**

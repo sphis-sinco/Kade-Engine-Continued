@@ -1,4 +1,4 @@
-1.9;
+0.1.0;
 - Added "lastVersion" save field that when its not the current installed version will display the outdated state, showing the new changes for the current update
 - Added new "properties" field to character JSONS
 - "Reset Settings" is now a full reset of ALL your settings
