@@ -62,9 +62,6 @@ class FPSText extends TextField
 			__enterFrame(time - currentTime);
 		});
 		#end
-
-		bitmap = ImageOutline.renderImage(this, 1, 0x000000, 1, true);
-		(cast(Lib.current.getChildAt(0), Main)).addChild(bitmap);
 	}
 
 	var array:Array<FlxColor> = [
@@ -112,8 +109,7 @@ class FPSText extends TextField
 		if (currentCount != cacheCount /*&& visible*/)
 		{
 			text = (FlxG.save.data.fps ? "FPS: "
-				+ currentFPS
-				+ (Main.watermarks ? "\nIE " + MainMenuState.indieEditionVer : "") : (Main.watermarks ? "IE " + "v" + MainMenuState.indieEditionVer : ""));
+				+ currentFPS : '');
 
 			#if (gl_stats && !disable_cffi && (!html5 || !canvas))
 			text += "\ntotalDC: " + Context3DStats.totalDrawCalls();
@@ -124,14 +120,6 @@ class FPSText extends TextField
 		}
 
 		visible = true;
-
-		Main.instance.removeChild(bitmap);
-
-		bitmap = ImageOutline.renderImage(this, 2, 0x000000, 1);
-
-		Main.instance.addChild(bitmap);
-
-		visible = false;
 
 		cacheCount = currentCount;
 	}
