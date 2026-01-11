@@ -338,7 +338,7 @@ class Debug
 			return inArray;
 
 		// Format the position ourselves.
-		var output:Array<Dynamic> = ['(${pos.className}#${pos.lineNumber}/${pos.methodName}): '];
+		var output:Array<Dynamic> = ['(${pos.className}:${pos.lineNumber} / ${pos.methodName}): '];
 
 		return output.concat(inArray);
 	}
@@ -437,7 +437,7 @@ class DebugLogWriter
 	public function write(input:Array<Dynamic>, logLevel = 'TRACE'):Void
 	{
 		var ts = FlxStringUtil.formatTime(getTime(), true);
-		var msg = '$ts [${logLevel.rpad(' ', 5).lpad(' ', 5)}] ${input.join('')}';
+		var msg = '$ts [${logLevel.rpad(' ', 8)}] ${input.join('')}';
 
 		#if FEATURE_FILESYSTEM
 		if (active && file != null)
