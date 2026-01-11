@@ -1,8 +1,4 @@
 {
-  "[haxe]": {
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true
-  },
   "lime.targetConfigurations": [
     {
       "label": "Build Windows (Debug)",
