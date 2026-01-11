@@ -2,7 +2,7 @@
 	"name": "dad",
 	"startingAnim": "idle",
 	"asset": "characters/DADDY_DEAREST",
-	"barColor": "FFAF66CE",
+	"barColor": "0xFFAF66CE",
 	"animations": [
 		{
 			"flipX": false,

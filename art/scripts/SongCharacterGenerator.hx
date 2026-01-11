@@ -568,7 +568,7 @@ class SongCharacterGenerator
 				name: charName,
 				asset: frames,
 				startingAnim: startingAnim,
-				barColor: '${barColor.hex()}',
+				barColor: '0x${barColor.hex()}',
 				animations: animation.anims
 			}
 

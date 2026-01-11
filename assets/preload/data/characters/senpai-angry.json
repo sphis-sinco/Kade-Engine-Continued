@@ -5,7 +5,7 @@
 		"pixel": true
 	},
 	"asset": "characters/senpai",
-	"barColor": "FFFFAA6F",
+	"barColor": "0xFFFFAA6F",
 	"animations": [
 		{
 			"flipX": false,

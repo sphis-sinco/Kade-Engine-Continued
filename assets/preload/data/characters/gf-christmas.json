@@ -2,7 +2,7 @@
 	"name": "gf-christmas",
 	"startingAnim": "danceRight",
 	"asset": "characters/gfChristmas",
-	"barColor": "A5004D",
+	"barColor": "0xA5004D",
 	"animations": [
 		{
 			"flipX": false,

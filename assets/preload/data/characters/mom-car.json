@@ -2,7 +2,7 @@
 	"name": "mom-car",
 	"startingAnim": "idle",
 	"asset": "characters/momCar",
-	"barColor": "FFD8558E",
+	"barColor": "0xFFD8558E",
 	"animations": [
 		{
 			"flipX": false,

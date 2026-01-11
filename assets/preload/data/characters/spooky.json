@@ -2,7 +2,7 @@
 	"name": "spooky",
 	"startingAnim": "danceRight",
 	"asset": "characters/spooky_kids_assets",
-	"barColor": "FFD57E00",
+	"barColor": "0xFFD57E00",
 	"animations": [
 		{
 			"flipX": false,

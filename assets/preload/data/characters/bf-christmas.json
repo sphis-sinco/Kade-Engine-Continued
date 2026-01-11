@@ -5,7 +5,7 @@
 		"flipX": true
 	},
 	"asset": "characters/bfChristmas",
-	"barColor": "FF31B0D1",
+	"barColor": "0xFF31B0D1",
 	"animations": [
 		{
 			"flipX": false,

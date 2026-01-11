@@ -2,7 +2,7 @@
 	"name": "gf-car",
 	"startingAnim": "danceRight",
 	"asset": "characters/gfCar",
-	"barColor": "A5004D",
+	"barColor": "0xA5004D",
 	"animations": [
 		{
 			"flipX": false,
