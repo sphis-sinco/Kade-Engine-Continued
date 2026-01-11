@@ -334,6 +334,7 @@ class PlayState extends MusicBeatState
 			Main.dumpCache();
 		}
 
+		sicks = 0;
 		bads = 0;
 		shits = 0;
 		goods = 0;
@@ -911,7 +912,8 @@ class PlayState extends MusicBeatState
 			add(judgementCounter);
 		}
 
-		replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (PlayStateChangeables.useDownscroll ? 100 : -100), 0, "REPLAY", 20);
+		replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (PlayStateChangeables.useDownscroll ? 100 : -100), 0, "REPLAY",
+			20);
 		replayTxt.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		replayTxt.borderSize = 4;
 		replayTxt.borderQuality = 2;
@@ -1853,10 +1855,14 @@ class PlayState extends MusicBeatState
 
 	private function appearStaticArrows():Void
 	{
+		var index = 0;
 		strumLineNotes.forEach(function(babyArrow:FlxSprite)
 		{
 			if (isStoryMode && !FlxG.save.data.middleScroll || executeModchart)
 				babyArrow.alpha = 1;
+			if (index > 3 && FlxG.save.data.middleScroll)
+				babyArrow.alpha = 1;
+			index++;
 		});
 	}
 
@@ -2059,14 +2065,12 @@ class PlayState extends MusicBeatState
 		}
 
 		#if cpp
-		@:privateAccess
+		if (FlxG.sound.music.playing)
+			@:privateAccess
 		{
-			if (FlxG.sound.music.playing)
-			{
-				lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
-				if (vocals.playing)
-					lime.media.openal.AL.sourcef(vocals._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
-			}
+			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+			if (vocals.playing)
+				lime.media.openal.AL.sourcef(vocals._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
 		}
 		#end
 
@@ -2741,13 +2745,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (camZooming && Conductor.bpm < 320)
+		if (camZooming)
 		{
-			if (Conductor.bpm > 320) // if we don't do this it'll be really annoying
-			{
-				camZooming = false;
-			}
-
 			if (FlxG.save.data.zoom < 0.8)
 				FlxG.save.data.zoom = 0.8;
 
@@ -4450,7 +4449,7 @@ class PlayState extends MusicBeatState
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);
 
-		if (FlxG.save.data.camzoom && Conductor.bpm < 340)
+		if (FlxG.save.data.camzoom && songMultiplier == 1)
 		{
 			// HARDCODING FOR MILF ZOOMS!
 			if (PlayState.SONG.songId == 'milf' && curBeat >= 168 && curBeat < 200 && camZooming && FlxG.camera.zoom < 1.35)
@@ -4465,7 +4464,7 @@ class PlayState extends MusicBeatState
 				camHUD.zoom += 0.03 / songMultiplier;
 			}
 		}
-		if (Conductor.bpm < 340)
+		if (songMultiplier == 1)
 		{
 			iconP1.setGraphicSize(Std.int(iconP1.width + 30));
 			iconP2.setGraphicSize(Std.int(iconP2.width + 30));

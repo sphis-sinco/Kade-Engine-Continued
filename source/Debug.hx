@@ -170,7 +170,7 @@ class Debug
 
 	/**
 	 * The game runs this function immediately when it starts.
-	 		* Use onGameStart() if it can wait until a little later.
+	 * Use onGameStart() if it can wait until a little later.
 	 */
 	public static function onInitProgram()
 	{
@@ -338,7 +338,7 @@ class Debug
 			return inArray;
 
 		// Format the position ourselves.
-		var output:Array<Dynamic> = ['(${pos.className}/${pos.methodName}#${pos.lineNumber}): '];
+		var output:Array<Dynamic> = ['(${pos.className}#${pos.lineNumber}/${pos.methodName}): '];
 
 		return output.concat(inArray);
 	}
