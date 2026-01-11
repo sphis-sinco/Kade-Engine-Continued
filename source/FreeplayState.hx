@@ -406,7 +406,7 @@ class FreeplayState extends MusicBeatState
 		@:privateAccess
 		{
 			if (FlxG.sound.music.playing)
-				lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, rate);
+				lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, rate);
 		}
 		#end
 

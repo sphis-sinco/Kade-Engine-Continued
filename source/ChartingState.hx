@@ -1944,14 +1944,14 @@ class ChartingState extends MusicBeatState
 					{
 						#if desktop
 						// The __backend.handle attribute is only available on native.
-						lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, speed);
+						lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, speed);
 						try
 						{
 							// We need to make CERTAIN vocals exist and are non-empty
 							// before we try to play them. Otherwise the game crashes.
 							if (vocals != null && vocals.length > 0)
 							{
-								lime.media.openal.AL.sourcef(vocals._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, speed);
+								lime.media.openal.AL.sourcef(vocals._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, speed);
 							}
 						}
 						catch (e)

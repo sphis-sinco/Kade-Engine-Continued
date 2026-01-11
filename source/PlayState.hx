@@ -1495,14 +1495,14 @@ class PlayState extends MusicBeatState
 				var fx = AL.createEffect();
 				AL.effectf(fx,AL.PITCH,songMultiplier);
 				AL.auxi(aux, AL.EFFECTSLOT_EFFECT, fx);
-				var instSource = FlxG.sound.music._channel.__audioSource;
+				var instSource = FlxG.sound.music._channel.__alSource;
 
 				var backend:lime._internal.backend.native.NativeAudioSource = instSource.__backend;
 
 				AL.source3i(backend.handle, AL.AUXILIARY_SEND_FILTER, aux, 1, AL.FILTER_NULL);
 				if (vocals != null)
 				{
-					var vocalSource = vocals._channel.__audioSource;
+					var vocalSource = vocals._channel.__alSource;
 
 					backend = vocalSource.__backend;
 					AL.source3i(backend.handle, AL.AUXILIARY_SEND_FILTER, aux, 1, AL.FILTER_NULL);
@@ -1514,9 +1514,9 @@ class PlayState extends MusicBeatState
 		#if cpp
 		@:privateAccess
 		{
-			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
 			if (vocals.playing)
-				lime.media.openal.AL.sourcef(vocals._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+				lime.media.openal.AL.sourcef(vocals._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
 		}
 		trace("pitched inst and vocals to " + songMultiplier);
 		#end
@@ -1973,9 +1973,9 @@ class PlayState extends MusicBeatState
 		{
 			#if desktop
 			// The __backend.handle attribute is only available on native.
-			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
 			if (vocals.playing)
-				lime.media.openal.AL.sourcef(vocals._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+				lime.media.openal.AL.sourcef(vocals._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
 			#end
 		}
 
@@ -2068,9 +2068,9 @@ class PlayState extends MusicBeatState
 		if (FlxG.sound.music.playing)
 			@:privateAccess
 		{
-			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+			lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
 			if (vocals.playing)
-				lime.media.openal.AL.sourcef(vocals._channel.__audioSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
+				lime.media.openal.AL.sourcef(vocals._channel.__alSource.__backend.handle, lime.media.openal.AL.PITCH, songMultiplier);
 		}
 		#end
 
