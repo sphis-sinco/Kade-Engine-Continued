@@ -12,6 +12,7 @@ import lime.app.Application;
 
 class OutdatedSubState extends MusicBeatState
 {
+	public static var justDownloaded:Bool = false;
 	public static var leftState:Bool = false;
 
 	public static var needVer:String = "IDFK LOL";
@@ -50,6 +51,15 @@ class OutdatedSubState extends MusicBeatState
 			+ "\n& more changes and bugfixes in the full changelog"
 			+ "\n\nPress Space to view the full changelog and update\nor ESCAPE to ignore this",
 			32);
+
+		if (justDownloaded)
+			txt.text = "Welcome to Kade Engine Continued "
+				+ MainMenuState.kadeEngineVer
+				+ "!"
+				+ "\n\nWhat's new:\n\n"
+				+ currChanges
+				+ "\n& more changes and bugfixes in the full changelog"
+				+ "\n\nPress Space to view the full changelog and update\nor ESCAPE to ignore this";
 
 		if (MainMenuState.nightly != "")
 			txt.text = "You are on\n"
@@ -91,6 +101,8 @@ class OutdatedSubState extends MusicBeatState
 			else
 				FlxTween.tween(kadeLogo, {alpha: 0.8}, 0.8, {ease: FlxEase.quartInOut});
 		}, 0);
+
+		FlxG.save.data.lastVersion = MainMenuState.kadeEngineVer;
 	}
 
 	override function update(elapsed:Float)

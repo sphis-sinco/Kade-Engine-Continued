@@ -59,6 +59,8 @@ class TitleState extends MusicBeatState
 		FlxG.autoPause = false;
 
 		FlxG.save.bind('kadeenginecontinued', 'Macohi');
+		if (FlxG.save.data.lastVersion != null)
+			FlxG.save.mergeDataFrom('funkin', 'ninjamuffin99', true, false);
 
 		PlayerSettings.init();
 
@@ -303,6 +305,16 @@ class TitleState extends MusicBeatState
 						trace('outdated lmao! ' + returnedData[0] + ' != ' + MainMenuState.kadeEngineVer);
 						OutdatedSubState.needVer = returnedData[0];
 						OutdatedSubState.currChanges = returnedData[1];
+						OutdatedSubState.justDownloaded = false;
+						FlxG.switchState(new OutdatedSubState());
+						clean();
+					}
+					else if (MainMenuState.kadeEngineVer != FlxG.save.data.lastVersion)
+					{
+						trace('Oh you dont know... ' + returnedData[0] + ' != ' + MainMenuState.kadeEngineVer);
+						OutdatedSubState.needVer = returnedData[0];
+						OutdatedSubState.currChanges = returnedData[1];
+						OutdatedSubState.justDownloaded = true;
 						FlxG.switchState(new OutdatedSubState());
 						clean();
 					}

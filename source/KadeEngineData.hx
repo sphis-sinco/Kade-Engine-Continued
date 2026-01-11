@@ -161,6 +161,9 @@ class KadeEngineData
 		if (FlxG.save.data.overrideNoteskins == null)
 			FlxG.save.data.overrideNoteskins = false;
 
+		if (FlxG.save.data.lastVersion == null)
+			FlxG.save.data.lastVersion = "1.8";
+
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
 		KeyBinds.gamepad = gamepad != null;
