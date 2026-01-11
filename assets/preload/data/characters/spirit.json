@@ -1,13 +1,11 @@
 {
 	"name": "spirit",
 	"startingAnim": "idle",
-	"asset": "characters/spirit",
-	"barColor": "FFFF3C6E",
-
 	"properties": {
 		"packer": true
 	},
-
+	"asset": "characters/spirit",
+	"barColor": "FFFF3C6E",
 	"animations": [
 		{
 			"flipX": false,

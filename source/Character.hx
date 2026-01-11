@@ -84,7 +84,7 @@ class Character extends FlxSprite
 			tex = Paths.getPackerAtlas(data.asset, 'shared');
 		else
 			tex = Paths.getSparrowAtlas(data.asset, 'shared');
-		
+
 		frames = tex;
 		if (frames != null)
 			for (anim in data.animations)
@@ -109,6 +109,17 @@ class Character extends FlxSprite
 		barColor = FlxColor.fromString(data.barColor);
 
 		playAnim(data.startingAnim);
+
+		if (data.properties?.pixel)
+		{
+			setGraphicSize(Std.int(width * (CoolUtil.daPixelZoom + (data.properties?.scale_addition ?? 0))));
+		}
+		else
+		{
+			setGraphicSize(Std.int(width * (1 + (data.properties?.scale_addition ?? 0))));
+		}
+
+		flipX = data.properties?.flipX ?? false;
 	}
 
 	public function loadOffsetFile(character:String, library:String = 'shared')
@@ -280,6 +291,11 @@ typedef CharacterData =
 typedef CharacterProperties =
 {
 	var ?packer:Bool;
+	var ?pixel:Bool;
+
+	var ?scale_addition:Null<Float>;
+
+	var ?flipX:Bool;
 }
 
 typedef AnimationData =

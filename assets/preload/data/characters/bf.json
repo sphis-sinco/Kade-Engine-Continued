@@ -1,6 +1,9 @@
 {
 	"name": "bf",
 	"startingAnim": "idle",
+	"properties": {
+		"flipX": true
+	},
 	"asset": "characters/BOYFRIEND",
 	"barColor": "FF31B0D1",
 	"animations": [

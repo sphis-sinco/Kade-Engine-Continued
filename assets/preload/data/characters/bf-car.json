@@ -1,6 +1,9 @@
 {
 	"name": "bf-car",
 	"startingAnim": "idle",
+	"properties": {
+		"flipX": true
+	},
 	"asset": "characters/bfCar",
 	"barColor": "FF31B0D1",
 	"animations": [

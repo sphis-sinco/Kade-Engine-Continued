@@ -1,8 +1,11 @@
 {
 	"name": "bf-christmas",
 	"startingAnim": "idle",
+	"properties": {
+		"flipX": true
+	},
 	"asset": "characters/bfChristmas",
-	"barColor": "FFFFFFFF",
+	"barColor": "FF31B0D1",
 	"animations": [
 		{
 			"flipX": false,

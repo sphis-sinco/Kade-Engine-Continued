@@ -307,8 +307,7 @@ class GameplayCustomizeState extends MusicBeatState
 		laneunderlayOpponent.screenCenter(Y);
 
 		text = new FlxText(5, FlxG.height + 40, 0,
-			"Click and drag around gameplay elements to customize their positions. Press R to reset. Q/E to change zoom. C to show combo. Escape to exit.",
-			12);
+			"Click and drag around gameplay elements to customize their positions. Press R to reset. Q/E to change zoom. C to show combo. Escape to exit.", 12);
 		text.scrollFactor.set();
 		text.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 
@@ -359,6 +358,12 @@ class GameplayCustomizeState extends MusicBeatState
 			sick.x = FlxG.mouse.x;
 			sick.y = FlxG.mouse.y;
 		}
+		if (FlxG.mouse.overlaps(sick) && FlxG.mouse.justReleased)
+		{
+			FlxG.save.data.changedHitX = sick.x;
+			FlxG.save.data.changedHitY = sick.y;
+			FlxG.save.data.changedHit = true;
+		}
 
 		for (i in playerStrums)
 			i.y = strumLine.y;
@@ -375,13 +380,6 @@ class GameplayCustomizeState extends MusicBeatState
 		{
 			FlxG.save.data.zoom -= 0.02;
 			camHUD.zoom = FlxG.save.data.zoom;
-		}
-
-		if (FlxG.mouse.overlaps(sick) && FlxG.mouse.justReleased)
-		{
-			FlxG.save.data.changedHitX = sick.x;
-			FlxG.save.data.changedHitY = sick.y;
-			FlxG.save.data.changedHit = true;
 		}
 
 		if (FlxG.keys.justPressed.C)

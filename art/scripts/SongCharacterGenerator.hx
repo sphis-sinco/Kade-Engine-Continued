@@ -109,8 +109,8 @@ class SongCharacterGenerator
 	public static function main()
 	{
 		for (file in FileSystem.readDirectory('assets/preload/data/characters'))
-			if (file.endsWith('.txt'))
-				checkChar(file.split('Offsets')[0]);
+			if (file.endsWith('.json'))
+				checkChar(file.split('.')[0]);
 	}
 
 	static function checkChar(char:String)
@@ -149,7 +149,16 @@ class SongCharacterGenerator
 		}
 		var loadOffsetFile = function(c)
 		{
-			var file = File.getContent('assets/preload/data/characters/${c}Offsets.txt').split('\n');
+			var file = [];
+			try
+			{
+				file = File.getContent('art/ogOffsets/${c}Offsets.txt').split('\n');
+			}
+			catch (e)
+			{
+				trace(e);
+				return;
+			};
 			trace('loadOffsetFile($c)');
 
 			for (offsets in file)
@@ -157,7 +166,7 @@ class SongCharacterGenerator
 				var offsetz = offsets.split(' ');
 				trace(' * $offsetz');
 				if (offsetz.length > 1)
-				addOffset(offsetz[0], Std.parseFloat(offsetz[1] ?? '0.0'), Std.parseFloat(offsetz[2] ?? '0.0'));
+					addOffset(offsetz[0], Std.parseFloat(offsetz[1] ?? '0.0'), Std.parseFloat(offsetz[2] ?? '0.0'));
 			}
 		};
 
@@ -173,10 +182,12 @@ class SongCharacterGenerator
 
 		var antialiasing = false;
 
+		var properties:Dynamic = {};
+
 		switch (char)
 		{
 			case 'gf-christmas':
-				tex = Paths.getSparrowAtlas('gfChristmas', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/gfChristmas', 'shared', true);
 				frames = tex;
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
@@ -195,7 +206,7 @@ class SongCharacterGenerator
 				playAnim('danceRight');
 
 			case 'gf-car':
-				tex = Paths.getSparrowAtlas('gfCar', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/gfCar', 'shared', true);
 				frames = tex;
 				animation.addByIndices('singUP', 'GF Dancing Beat Hair blowing CAR', [0], "", 24, false);
 				animation.addByIndices('danceLeft', 'GF Dancing Beat Hair blowing CAR', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -208,7 +219,7 @@ class SongCharacterGenerator
 				playAnim('danceRight');
 
 			case 'gf-pixel':
-				tex = Paths.getSparrowAtlas('gfPixel', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/gfPixel', 'shared', true);
 				frames = tex;
 				animation.addByIndices('singUP', 'GF IDLE', [2], "", 24, false);
 				animation.addByIndices('danceLeft', 'GF IDLE', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -224,7 +235,7 @@ class SongCharacterGenerator
 
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('DADDY_DEAREST', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared', true);
 				frames = tex;
 				animation.addByPrefix('idle', 'Dad idle dance', 24, false);
 				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24, false);
@@ -238,7 +249,7 @@ class SongCharacterGenerator
 
 				playAnim('idle');
 			case 'spooky':
-				tex = Paths.getSparrowAtlas('spooky_kids_assets', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/spooky_kids_assets', 'shared', true);
 				frames = tex;
 				animation.addByPrefix('singUP', 'spooky UP NOTE', 24, false);
 				animation.addByPrefix('singDOWN', 'spooky DOWN note', 24, false);
@@ -252,7 +263,7 @@ class SongCharacterGenerator
 
 				playAnim('danceRight');
 			case 'mom':
-				tex = Paths.getSparrowAtlas('Mom_Assets', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/Mom_Assets', 'shared', true);
 				frames = tex;
 
 				animation.addByPrefix('idle', "Mom Idle", 24, false);
@@ -270,7 +281,7 @@ class SongCharacterGenerator
 				playAnim('idle');
 
 			case 'mom-car':
-				tex = Paths.getSparrowAtlas('momCar', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/momCar', 'shared', true);
 				frames = tex;
 
 				animation.addByPrefix('idle', "Mom Idle", 24, false);
@@ -287,7 +298,7 @@ class SongCharacterGenerator
 
 				playAnim('idle');
 			case 'monster':
-				tex = Paths.getSparrowAtlas('Monster_Assets', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/Monster_Assets', 'shared', true);
 				frames = tex;
 				animation.addByPrefix('idle', 'monster idle', 24, false);
 				animation.addByPrefix('singUP', 'monster up note', 24, false);
@@ -299,7 +310,7 @@ class SongCharacterGenerator
 				barColor = 0xFFf3ff6e;
 				playAnim('idle');
 			case 'monster-christmas':
-				tex = Paths.getSparrowAtlas('monsterChristmas', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/monsterChristmas', 'shared', true);
 				frames = tex;
 				animation.addByPrefix('idle', 'monster idle', 24, false);
 				animation.addByPrefix('singUP', 'monster up note', 24, false);
@@ -311,7 +322,7 @@ class SongCharacterGenerator
 				barColor = 0xFFf3ff6e;
 				playAnim('idle');
 			case 'pico':
-				tex = Paths.getSparrowAtlas('Pico_FNF_assetss', 'shared', true);
+				tex = Paths.getSparrowAtlas('characters/Pico_FNF_assetss', 'shared', true);
 				frames = tex;
 				animation.addByPrefix('idle', "Pico Idle Dance", 24, false);
 				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
@@ -332,7 +343,7 @@ class SongCharacterGenerator
 				flipX = true;
 
 			case 'bf':
-				var tex = Paths.getSparrowAtlas('BOYFRIEND', 'shared', true);
+				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared', true);
 				frames = tex;
 
 				// trace(tex.frames.length);
@@ -363,7 +374,7 @@ class SongCharacterGenerator
 				flipX = true;
 
 			case 'bf-christmas':
-				var tex = Paths.getSparrowAtlas('bfChristmas', 'shared', true);
+				var tex = Paths.getSparrowAtlas('characters/bfChristmas', 'shared', true);
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -382,7 +393,7 @@ class SongCharacterGenerator
 
 				flipX = true;
 			case 'bf-car':
-				var tex = Paths.getSparrowAtlas('bfCar', 'shared', true);
+				var tex = Paths.getSparrowAtlas('characters/bfCar', 'shared', true);
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -402,7 +413,7 @@ class SongCharacterGenerator
 
 				flipX = true;
 			case 'bf-pixel':
-				frames = Paths.getSparrowAtlas('bfPixel', 'shared', true);
+				frames = Paths.getSparrowAtlas('characters/bfPixel', 'shared', true);
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
 				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
 				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
@@ -429,7 +440,7 @@ class SongCharacterGenerator
 
 				flipX = true;
 			case 'bf-pixel-dead':
-				frames = Paths.getSparrowAtlas('bfPixelsDEAD', 'shared', true);
+				frames = Paths.getSparrowAtlas('characters/bfPixelsDEAD', 'shared', true);
 				animation.addByPrefix('singUP', "BF Dies pixel", 24, false);
 				animation.addByPrefix('firstDeath', "BF Dies pixel", 24, false);
 				animation.addByPrefix('deathLoop', "Retry Loop", 24, false);
@@ -447,7 +458,7 @@ class SongCharacterGenerator
 				barColor = 0xFF31b0d1;
 
 			case 'senpai':
-				frames = Paths.getSparrowAtlas('senpai', 'shared', true);
+				frames = Paths.getSparrowAtlas('characters/senpai', 'shared', true);
 				animation.addByPrefix('idle', 'Senpai Idle', 24, false);
 				animation.addByPrefix('singUP', 'SENPAI UP NOTE', 24, false);
 				animation.addByPrefix('singLEFT', 'SENPAI LEFT NOTE', 24, false);
@@ -464,7 +475,7 @@ class SongCharacterGenerator
 
 				antialiasing = false;
 			case 'senpai-angry':
-				frames = Paths.getSparrowAtlas('senpai', 'shared', true);
+				frames = Paths.getSparrowAtlas('characters/senpai', 'shared', true);
 				animation.addByPrefix('idle', 'Angry Senpai Idle', 24, false);
 				animation.addByPrefix('singUP', 'Angry Senpai UP NOTE', 24, false);
 				animation.addByPrefix('singLEFT', 'Angry Senpai LEFT NOTE', 24, false);
@@ -481,7 +492,7 @@ class SongCharacterGenerator
 				antialiasing = false;
 
 			case 'spirit':
-				frames = Paths.getPackerAtlas('spirit', 'shared', true);
+				frames = Paths.getPackerAtlas('characters/spirit', 'shared', true);
 				animation.addByPrefix('idle', "idle spirit_", 24, false);
 				animation.addByPrefix('singUP', "up_", 24, false);
 				animation.addByPrefix('singRIGHT', "right_", 24, false);
@@ -499,7 +510,7 @@ class SongCharacterGenerator
 				antialiasing = false;
 
 			case 'parents-christmas':
-				frames = Paths.getSparrowAtlas('mom_dad_christmas_assets', 'shared', true);
+				frames = Paths.getSparrowAtlas('characters/mom_dad_christmas_assets', 'shared', true);
 				animation.addByPrefix('idle', 'Parent Christmas Idle', 24, false);
 				animation.addByPrefix('singUP', 'Parent Up Note Dad', 24, false);
 				animation.addByPrefix('singDOWN', 'Parent Down Note Dad', 24, false);
@@ -520,15 +531,37 @@ class SongCharacterGenerator
 
 		trace('Saving char : ' + char);
 
+		var notes = [];
+		
+		if (char == 'spirit')
+			properties.packer = true;
+		
+		if (char.contains('bf') || char == 'pico')
+			properties.flipX = true;
+		
+		if (char.contains('gf'))
+			barColor = 0xA5004D;
+		if (char.contains('bf'))
+			barColor = 0xFF31B0D1;
+
+		if (barColor == 0xFFFFFF)
+			notes.push('missing barColor');
+
+		if (notes.length > 0)
+			properties.notes = notes;
+
 		if (animation.anims.length > 0)
 		{
-			var data:CharacterData = {
+			var data:Dynamic = {
 				name: charName,
 				asset: frames,
 				startingAnim: startingAnim,
 				barColor: '${barColor.hex()}',
 				animations: animation.anims
 			}
+
+			if (Reflect.fields(properties).length > 0)
+				data.properties = properties;
 
 			File.saveContent(charsPath + char + '.json', Json.stringify(data, '\t').trim());
 		}
@@ -551,4 +584,6 @@ typedef CharacterData =
 	var barColor:String;
 
 	var animations:Array<AnimationData>;
+
+	var ?properties:Dynamic;
 }

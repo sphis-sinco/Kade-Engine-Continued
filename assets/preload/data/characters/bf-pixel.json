@@ -1,6 +1,9 @@
 {
 	"name": "bf-pixel",
 	"startingAnim": "idle",
+	"properties": {
+		"flipX": true
+	},
 	"asset": "characters/bfPixel",
 	"barColor": "FF31B0D1",
 	"animations": [
