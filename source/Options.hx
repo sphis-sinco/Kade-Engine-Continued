@@ -1381,7 +1381,7 @@ class OffsetMenu extends Option
 		PlayState.storyWeek = 0;
 		PlayState.offsetTesting = true;
 		trace('CUR WEEK' + PlayState.storyWeek);
-		LoadingState.loadAndSwitchState(() -> new PlayState());
+		LoadingState.loadAndSwitchState(new PlayState());
 		return false;
 	}
 

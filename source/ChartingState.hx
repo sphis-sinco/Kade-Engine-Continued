@@ -1274,7 +1274,7 @@ class ChartingState extends MusicBeatState
 				_song.notes.remove(i);
 
 			toRemove = []; // clear memory
-			LoadingState.loadAndSwitchState(() -> new PlayState());
+			LoadingState.loadAndSwitchState(new PlayState());
 		});
 
 		tab_group_section.add(refresh);
@@ -2650,7 +2650,7 @@ class ChartingState extends MusicBeatState
 
 					toRemove = []; // clear memory
 
-					LoadingState.loadAndSwitchState(() -> new PlayState());
+					LoadingState.loadAndSwitchState(new PlayState());
 				}
 
 				if (FlxG.keys.justPressed.E)
@@ -3509,7 +3509,7 @@ class ChartingState extends MusicBeatState
 			_song.notes.remove(i);
 
 		toRemove = []; // clear memory
-		LoadingState.loadAndSwitchState(() -> new ChartingState());
+		LoadingState.loadAndSwitchState(new ChartingState());
 	}
 
 	function loadAutosave():Void
@@ -3562,7 +3562,7 @@ class ChartingState extends MusicBeatState
 			_song.notes.remove(i);
 
 		toRemove = []; // clear memory
-		LoadingState.loadAndSwitchState(() -> new ChartingState());
+		LoadingState.loadAndSwitchState(new ChartingState());
 	}
 
 	function autosaveSong():Void
