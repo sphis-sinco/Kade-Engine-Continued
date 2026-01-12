@@ -1348,7 +1348,7 @@ class PlayState extends MusicBeatState
 		}
 		if (keys[data])
 		{
-			trace("ur already holding " + key);
+			// trace("ur already holding " + key);
 			return;
 		}
 
@@ -1371,7 +1371,7 @@ class PlayState extends MusicBeatState
 			if (i.noteData == data && !i.isSustainNote)
 				dataNotes.push(i);
 
-		trace("notes able to hit for " + key.toString() + " " + dataNotes.length);
+		// trace("notes able to hit for " + key.toString() + " " + dataNotes.length);
 
 		if (dataNotes.length != 0)
 		{
@@ -2493,8 +2493,6 @@ class PlayState extends MusicBeatState
 			if (Math.abs(FlxG.sound.music.time - (Conductor.songPosition * songMultiplier)) > 60)
 			{
 				trace('RESYNC (offset: ${FlxG.sound.music.time - (Conductor.songPosition * songMultiplier)})');
-				FlxG.sound.music.time = Conductor.songPosition * songMultiplier;
-				vocals.time = FlxG.sound.music.time;
 				resyncVocals();
 			}
 
@@ -2951,7 +2949,7 @@ class PlayState extends MusicBeatState
 					if (daNote.isAlt)
 					{
 						altAnim = '-alt';
-						trace("YOO WTF THIS IS AN ALT NOTE????");
+						// trace("YOO WTF THIS IS AN ALT NOTE????");
 					}
 
 					// Accessing the animation name directly to play it
