@@ -5,6 +5,12 @@ And also a minecraft java edition kinda thing for FNF seemed cool to me so yeah
 
 [DOCS](./docs/README.md)
 
+## Note
+
+I don't call it "Indie Edition" as some sort of "FNF isn't indie anymore" kinda thing, I just find indie projects to be the cool things held together by duct tape.
+
+Like something you would've made with cardboard as a kid.
+
 # Credits
 
 ## Friday Night Funkin'
