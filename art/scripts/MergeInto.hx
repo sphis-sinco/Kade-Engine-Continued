@@ -52,7 +52,9 @@ class MergeInto
 				Sys.command('git', ['checkout', targetBranch]);
 				Sys.command('git', ['merge', curBranch]);
 				Sys.command('git', ['push']);
+				#if !DONT_GOBACK
 				Sys.command('git', ['checkout', curBranch]);
+				#end
 			case 'n':
 				trace('No, okay.');
 			default:
