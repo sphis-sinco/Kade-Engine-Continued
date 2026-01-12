@@ -273,9 +273,9 @@ class FreeplayState extends MusicBeatState
 			FreeplayState.songData.set(songId, diffs);
 			trace('loaded diffs for ' + songId);
 			FreeplayState.songs.push(meta);
-
-			cacheSongs();
 		}
+		
+		cacheSongs();
 	}
 
 	static function cacheSongs()
