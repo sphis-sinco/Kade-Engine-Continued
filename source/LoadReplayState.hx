@@ -239,7 +239,7 @@ class LoadReplayState extends MusicBeatState
 				PlayState.isStoryMode = false;
 				PlayState.storyDifficulty = PlayState.rep.replay.songDiff;
 				PlayState.storyWeek = getWeekNumbFromSong(PlayState.rep.replay.songName);
-				LoadingState.loadAndswitchState(() -> new PlayState());
+				LoadingState.loadAndSwitchState(() -> new PlayState());
 			}
 			else
 			{

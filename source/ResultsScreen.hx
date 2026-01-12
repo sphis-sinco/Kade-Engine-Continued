@@ -236,7 +236,7 @@ class ResultsScreen extends FlxSubState
 
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = PlayState.storyDifficulty;
-			LoadingState.loadAndswitchState(() -> new PlayState());
+			LoadingState.loadAndSwitchState(() -> new PlayState());
 			PlayState.instance.clean();
 		}
 
