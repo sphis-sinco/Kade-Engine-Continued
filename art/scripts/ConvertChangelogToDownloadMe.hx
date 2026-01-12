@@ -20,7 +20,21 @@ class ConvertChangelogToDownloadMe
 
 		for (line in changelog)
 			if (line.contains('💖'))
-				newDownloadMe += line.replace('💖 ', '').replace('`', '"') + '\n';
+			{
+				var lineReplaced = line.replace('💖 ', '').replace('`', '"');
+				var newline = lineReplaced;
+
+				if (newline.contains('https://'))
+					newline = lineReplaced.substr(0, lineReplaced.indexOf('https') - 1);
+
+				newline = newline.replace('(', '');
+				newline = newline.replace(')', '');
+
+				newline = newline.replace('[', '(');
+				newline = newline.replace(']', ')');
+
+				newDownloadMe += newline + '\n';
+			}
 
 		Sys.println('Generated version.downloadMe:\n');
 		Sys.println(newDownloadMe);

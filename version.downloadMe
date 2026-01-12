@@ -1,1 +1,2 @@
 0.1.1;
+- Fixed: Freeplay cache songs should be after the for i in list (Issue #1)
