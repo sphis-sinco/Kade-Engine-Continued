@@ -6,7 +6,7 @@ import sys.io.Process;
 
 using StringTools;
 
-// haxe -m art.scripts.MergeInto --interp
+// haxe -m art.scripts.MergeInto --interp -D BRANCH="whatever"
 class MergeInto
 {
 	static function main()
