@@ -298,7 +298,7 @@ class TitleState extends MusicBeatState
 				{
 					returnedData[0] = data.substring(0, data.indexOf(';'));
 					returnedData[1] = data.substring(data.indexOf('-'), data.length);
-					if (!MainMenuState.indieEditionVer.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
+					if (!Global.DEBUG && !MainMenuState.indieEditionVer.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
 					{
 						trace('outdated lmao! ' + returnedData[0] + ' != ' + MainMenuState.indieEditionVer);
 						OutdatedSubState.needVer = returnedData[0];
@@ -307,7 +307,7 @@ class TitleState extends MusicBeatState
 						FlxG.switchState(() -> new OutdatedSubState());
 						clean();
 					}
-					else if (MainMenuState.indieEditionVer != FlxG.save.data.lastVersion)
+					else if (!Global.DEBUG && MainMenuState.indieEditionVer != FlxG.save.data.lastVersion)
 					{
 						trace('Oh you dont know... ' + returnedData[0] + ' != ' + MainMenuState.indieEditionVer);
 						OutdatedSubState.needVer = returnedData[0];

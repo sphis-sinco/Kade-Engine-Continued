@@ -111,7 +111,7 @@ class Main extends Sprite
 		// Finish up loading debug tools.
 		Debug.onGameStart();
 
-		Application.current.window.title = 'Funkin Indie${#if debug '*' #else '' #end} ${MainMenuState.indieEditionVer}';
+		Application.current.window.title = 'Funkin Indie${(Global.DEBUG) ? '*' : ''} ${MainMenuState.indieEditionVer}';
 	}
 
 	var game:FlxGame;
