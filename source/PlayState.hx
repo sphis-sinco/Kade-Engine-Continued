@@ -2490,9 +2490,9 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			if (Math.abs(FlxG.sound.music.time - (Conductor.songPosition * songMultiplier)) > 20)
+			if (Math.abs(FlxG.sound.music.time - (Conductor.songPosition * songMultiplier)) > 60)
 			{
-				trace('RESYNC');
+				trace('RESYNC (offset: ${FlxG.sound.music.time - (Conductor.songPosition * songMultiplier)})');
 				FlxG.sound.music.time = Conductor.songPosition * songMultiplier;
 				vocals.time = FlxG.sound.music.time;
 				resyncVocals();
@@ -3312,7 +3312,7 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			offsetTesting = false;
-			LoadingState.loadAndswitchState(() -> new OptionsMenu());
+			LoadingState.loadAndSwitchState(new OptionsMenu());
 			clean();
 			FlxG.save.data.offset = offsetTest;
 		}
@@ -3425,7 +3425,7 @@ class PlayState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0], diff);
 					FlxG.sound.music.stop();
 
-					LoadingState.loadAndswitchState(() -> new PlayState());
+					LoadingState.loadAndSwitchState(new PlayState());
 					clean();
 				}
 			}
