@@ -1,6 +1,7 @@
 package;
 
 import openfl.utils.Assets as OpenFlAssets;
+import flixel.FlxG;
 
 using StringTools;
 
@@ -17,16 +18,16 @@ class CoolUtil
 		return name != null ? name.split('.').pop() : 'Unknown';
 	}
 
-	public static function classFieldsToString(theclass:Any, excludeFieldsInToString:Array<String> = []):String
+	public static function classFieldsToString(theclass:Any, excludeFieldsInToString:Array<String>):String
 	{
-		var eventName:String = Type.getClassName(this);
+		var eventName:String = Type.getClassName(theclass);
 		var fieldsList:String = '';
 
 		var fi = 0;
-		for (field in Reflect.fields(this))
+		for (field in Reflect.fields(theclass))
 		{
 			if (!excludeFieldsInToString.contains(field))
-				fieldsList += '${fi > 0?', '} $field: ${Reflect.field(this, field)}';
+				fieldsList += '${fi > 0 ? ', ' : ''} ${field}: ${Reflect.field(theclass, field)}';
 			fi++;
 		}
 

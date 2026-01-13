@@ -1,5 +1,7 @@
 package modding.events.bases;
 
+import modding.scripting.Script;
+
 enum abstract PrePostState(String) from String to String
 {
 	var PRE:String = 'PRE';

@@ -1,11 +1,8 @@
 package modding.scripting;
 
-import modding.events.simple.UpdateEvent;
-import modding.events.basic.CreateEvent;
-import polymod.hscript.HScriptable;
-
-// @:hscriptClass
-class Scriptedscript extends Script implements HScriptable {}
+import modding.events.simple.*;
+import modding.events.basic.*;
+import modding.events.bases.*;
 
 class Script
 {
@@ -29,11 +26,9 @@ class Script
 
 	public function onUpdate(event:UpdateEvent) {}
 
-	public function onStateSwitch(event:Any) {}
+	public function onStateSwitch(event:SwitchStateEvent) {}
 
-	public function onFocusGained(event:Any) {}
-
-	public function onFocusLost(event:Any) {}
+	public function onFocusChange(event:FocusEvent) {}
 
 	public function destroy() {}
 }

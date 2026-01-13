@@ -1,7 +1,5 @@
 package modding.scripting;
 
-import modding.scripting.Script.Scriptedscript;
-
 class ScriptManager
 {
 	static var scripts:Array<Script> = [];
@@ -20,7 +18,7 @@ class ScriptManager
 	{
 		destroyScripts();
 
-		var newscripts = ScriptedScript.listScriptClasses();
+		var newscripts:Array<String> = ScriptedScript.listScriptClasses();
 		trace('Found ${newscripts.length} scripts to load');
 		for (script in newscripts)
 		{

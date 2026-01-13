@@ -208,6 +208,8 @@
 
 	<!-- Defines whether the Mods menu will display before launching. -->
   <haxedef name="FEATURE_MODCORE" if="desktop" />
+  
+	<define name="hscriptPos"/>
 
   	<!-- Options for Polymod -->
 	<section if="polymod">

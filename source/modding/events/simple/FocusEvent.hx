@@ -12,7 +12,7 @@ class FocusEvent extends ScriptEvent
 {
 	public var focusType:FocusType;
 
-	public function new(focusType:Float, script:Script, state:String)
+	public function new(focusType:FocusType, script:Script, state:String)
 	{
 		super(script, state);
 		this.focusType = focusType;

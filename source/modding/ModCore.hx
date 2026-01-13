@@ -1,5 +1,7 @@
 package modding;
 
+import flixel.FlxState;
+import modding.events.simple.FocusEvent.FocusType;
 import flixel.util.FlxSignal;
 import modding.events.*;
 import modding.events.bases.*;
@@ -214,64 +216,19 @@ class ModCore
 
 	static function scriptInit()
 	{
-		var signals = [
+		var signals:Map<String, Array<Dynamic>> = [
 			'focusGained' => [
 				FlxG.signals.focusGained,
 				function() ScriptManager.callEvent(script ->
 				{
-					script.onFocusGained(new FocusEvent(GAINED, script, CoolUtil.getCurrentState()));
+					script.onFocusChange(new FocusEvent(FocusType.GAINED, script, CoolUtil.getCurrentState()));
 				})
 			],
 			'focusLost' => [
 				FlxG.signals.focusLost,
 				function() ScriptManager.callEvent(script ->
 				{
-					script.onFocusLost(new FocusEvent(GAINED, script, CoolUtil.getCurrentState()));
-				})
-			],
-
-			'preStateSwitch' => [
-				FlxG.signals.preStateSwitch,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.onStateSwitchPre(null);
-				})
-			],
-			'postStateSwitch' => [
-				FlxG.signals.postStateSwitch,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.onStateSwitchPost(null);
-				})
-			],
-
-			'preStateCreate' => [
-				FlxG.signals.preStateCreate,
-				function(state:FlxState) ScriptManager.callEvent(script ->
-				{
-					script.create(new CreateEvent(PRE, script, CoolUtil.getCurrentState()));
-				})
-			],
-			'postStateCreate' => [
-				MusicBeatState.postStateCreate,
-				function(state:FlxState) ScriptManager.callEvent(script ->
-				{
-					script.create(new CreateEvent(POST, script, CoolUtil.getCurrentState()));
-				})
-			],
-
-			'preUpdate' => [
-				FlxG.signals.preUpdate,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.update(new UpdateEvent(PRE, script, CoolUtil.getCurrentState()));
-				})
-			],
-			'postUpdate' => [
-				FlxG.signals.postUpdate,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.update(new UpdateEvent(PRE, script, CoolUtil.getCurrentState()));
+					script.onFocusChange(new FocusEvent(FocusType.LOST, script, CoolUtil.getCurrentState()));
 				})
 			],
 
@@ -287,6 +244,36 @@ class ModCore
 				function() ScriptManager.callEvent(script ->
 				{
 					script.onStateSwitch(new SwitchStateEvent(POST, script, CoolUtil.getCurrentState()));
+				})
+			],
+
+			'preStateCreate' => [
+				FlxG.signals.preStateCreate,
+				function(state:FlxState) ScriptManager.callEvent(script ->
+				{
+					script.onCreate(new CreateEvent(PRE, script, CoolUtil.getCurrentState()));
+				})
+			],
+			'postStateCreate' => [
+				MusicBeatState.postStateCreate,
+				function(state:FlxState) ScriptManager.callEvent(script ->
+				{
+					script.onCreate(new CreateEvent(POST, script, CoolUtil.getCurrentState()));
+				})
+			],
+
+			'preUpdate' => [
+				FlxG.signals.preUpdate,
+				function() ScriptManager.callEvent(script ->
+				{
+					script.onUpdate(new UpdateEvent(PRE, script, CoolUtil.getCurrentState()));
+				})
+			],
+			'postUpdate' => [
+				FlxG.signals.postUpdate,
+				function() ScriptManager.callEvent(script ->
+				{
+					script.onUpdate(new UpdateEvent(PRE, script, CoolUtil.getCurrentState()));
 				})
 			],
 		];

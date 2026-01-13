@@ -2,6 +2,7 @@ package;
 
 import flixel.util.FlxSignal;
 import flixel.math.FlxMath;
+import flixel.FlxState;
 import flixel.FlxCamera;
 import flixel.text.FlxText;
 import lime.app.Application;
@@ -58,7 +59,7 @@ class MusicBeatState extends FlxUIState
 		}
 	}
 
-	public static var postStateCreate:FlxSignal = new FlxSignal();
+	public static var postStateCreate:FlxTypedSignal<FlxState -> Void> = new FlxTypedSignal<FlxState -> Void>();
 
 	override function create()
 	{
