@@ -149,20 +149,41 @@ class Script extends Iris
 			// Engine related stuff
 
 			"PlayState" => PlayState,
+			"PlayStateChangeables" => PlayStateChangeables,
+			"ResultsScreen" => ResultsScreen,
+			"PauseSubstate" => PauseSubState,
+			"ChartingState" => ChartingState,
+			"ChartParser" => ChartParser,
+			"AnimationDebug" => AnimationDebug,
+			"GameOverState" => GameOverState,
+			"GameOverSubstate" => GameOverSubstate,
+			"GameplayCustomizeState" => GameplayCustomizeState,
+			"GitarooPause" => GitarooPause,
+
+			"BackgroundDancer" => BackgroundDancer,
+			"BackgroundGirls" => BackgroundGirls,
+
 			"HealthIcon" => HealthIcon,
-
+			"DialogueBox" => DialogueBox,
 			"Note" => Note,
-
+			"NoteskinHelpers" => NoteskinHelpers,
 			"Character" => Character,
 			"Boyfriend" => Boyfriend,
 
-			"PauseSubstate" => PauseSubState,
-			"FreeplayState" => FreeplayState,
-			"MainMenuState" => MainMenuState,
-			"PauseSubState" => PauseSubState,
-			"StoryMenuState" => StoryMenuState,
+			"Stage" => Stage,
+			"Song" => Song,
+
 			"TitleState" => TitleState,
+			"MainMenuState" => MainMenuState,
+			"FreeplayState" => FreeplayState,
+			"StoryMenuState" => StoryMenuState,
+
 			"OptionsDirect" => OptionsDirect,
+			"OptionsMenu" => OptionsMenu,
+
+			"Caching" => Caching,
+
+			"Alphabet" => Alphabet,
 
 			"Paths" => Paths,
 			"Conductor" => Conductor,
@@ -171,9 +192,14 @@ class Script extends Iris
 			"Debug" => Debug,
 
 			"ModCore" => ModCore,
+			"Global" => Global,
 
 			"MiscScript" => MiscScript,
 			"Script" => Script,
+
+			#if FEATURE_LUAMODCHART
+			"LuaClass" => LuaClass,
+			#end
 		];
 	}
 
