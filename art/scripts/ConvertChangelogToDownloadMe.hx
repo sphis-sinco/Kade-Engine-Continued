@@ -27,6 +27,8 @@ class ConvertChangelogToDownloadMe
 				if (newline.contains('https://'))
 					newline = lineReplaced.substr(0, lineReplaced.indexOf('https') - 1);
 
+				newline = newline.replace('\\(', '[');
+				newline = newline.replace('\\)', ']');
 				newline = newline.replace('(', '');
 				newline = newline.replace(')', '');
 

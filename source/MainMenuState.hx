@@ -43,7 +43,7 @@ class MainMenuState extends MusicBeatState
 
 	static function get_indieEditionVer():String
 	{
-		return Application.current.meta.get('version') + indieEditionVer_nightly;
+		return Application.current.meta.get('version') + indieEditionVer_nightly + (Global.DEBUG ? '*' : '');
 	}
 
 	public static var kadeEngineVer:String = '1.8';
