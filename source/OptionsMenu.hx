@@ -35,7 +35,7 @@ class OptionCata extends FlxSprite
 		title = _title;
 		middle = middleType;
 		if (!middleType)
-			makeGraphic(295, 64, FlxColor.BLACK);
+			changeColor(FlxColor.BLACK);
 		alpha = 0.4;
 
 		options = _options;
@@ -75,7 +75,7 @@ class OptionCata extends FlxSprite
 
 	public function changeColor(color:FlxColor)
 	{
-		makeGraphic(295, 64, color);
+		makeGraphic(Std.int(295 / (OptionsMenu.expectedOptionsCatCount / 4)), 64, color);
 	}
 }
 
@@ -114,11 +114,13 @@ class OptionsMenu extends FlxSubState
 	public var descText:FlxText;
 	public var descBack:FlxSprite;
 
+	public static var expectedOptionsCatCount:Int = 5;
+
 	override function create()
 	{
 		var getPos = function(id:Int = 1)
 		{
-			return 50 + (295 * id);
+			return 50 + ((295 / (expectedOptionsCatCount / 4)) * id);
 		}
 
 		options = [
@@ -170,7 +172,11 @@ class OptionsMenu extends FlxSubState
 				new LockWeeksOption("Reset your story mode progress. This is irreversible!"),
 				new ResetSettings("Reset ALL your settings. This is irreversible!")
 			]),
-			new OptionCata(getPos(4), 40, "Mods", [new ShowInput("Display every single input on the score screen."),]),
+			new OptionCata(getPos(4), 40, "Mods", [
+				new ResetScoreOption("Reset your score on all songs and weeks. This is irreversible!"),
+				new LockWeeksOption("Reset your story mode progress. This is irreversible!"),
+				new ResetSettings("Reset ALL your settings. This is irreversible!"),
+			]),
 			new OptionCata(-1, 125, "Editing Keybinds", [
 				new LeftKeybind("The left note's keybind"),
 				new DownKeybind("The down note's keybind"),
@@ -230,7 +236,7 @@ class OptionsMenu extends FlxSubState
 
 		for (i in 0...options.length - 1)
 		{
-			if (i >= 4)
+			if (options[i].x == -1 || options[1].middle == true)
 				continue;
 			var cat = options[i];
 			add(cat);
