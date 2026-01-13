@@ -168,8 +168,6 @@ class Script extends Iris
 
 			"ModCore" => ModCore,
 
-			"Discord" => Discord,
-
 			"MiscScript" => MiscScript,
 			"Script" => Script,
 		];
