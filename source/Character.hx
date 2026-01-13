@@ -124,6 +124,7 @@ class Character extends FlxSprite
 		}
 
 		flipX = data.properties?.flipX ?? false;
+		updateHitbox();
 	}
 
 	public function loadOffsetFile(character:String, library:String = 'shared')

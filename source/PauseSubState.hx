@@ -198,7 +198,7 @@ class PauseSubState extends MusicBeatSubstate
 						PlayState.instance.removedVideo = true;
 					}
 					PlayState.instance.clean();
-					FlxG.resetState();
+					LoadingState.loadAndSwitchState(new PlayState(), true);
 					PlayState.stageTesting = false;
 				case "Options":
 					goToOptions = true;

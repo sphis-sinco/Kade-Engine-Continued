@@ -1,5 +1,6 @@
 package scripting;
 
+import scripting.classAlts.ScriptedReflect;
 import polymod.fs.ZipFileSystem;
 import lime.utils.Assets;
 
@@ -111,7 +112,7 @@ class Script extends Iris
 			// Haxe related stuff
 			"Std" => ScriptedStd,
 			"Math" => Math,
-			"Reflect" => Reflect,
+			"Reflect" => ScriptedReflect,
 			"StringTools" => StringTools,
 			"Json" => haxe.Json,
 
