@@ -7,13 +7,20 @@ assignees: ''
 
 ---
 
-#### Please check for duplicates, similar issues or closed issues with the same problem, as well performing simple troubleshooting steps (such as deleting the export folder if it's an issue with compiling, reinstalling Kade Engine) before submitting an issue.
+<!-- Please check for duplicates, similar issues or closed issues with the same problem --> 
+<!-- as well performing simple troubleshooting steps before submitting an issue. -->
+<!-- Such as deleting the export folder if it's an issue with compiling, or reinstalling -->
 
-### If you are playing a downloaded version of the game, what operating system are you using?
-Windows (`x86`), Windows (`x86_64`), Linux, or macOS? Specify below.
+# Please describe your issue. Provide extensive detail and images if possible.
 
-## What version of the game are you using? Look in the bottom left corner of the main menu.
+# Info
 
-## Have you identified any steps to reproduce the bug? If so, please describe them below. Use images if possible.
+<!-- Windows, Linux, macOS, Web? Specify below. -->
+OS: 
+<!-- If you don't know, look in the bottom left corner of the main menu or check the window title -->
+<!-- (Add an * if its an indev / debug version) -->
+Game Version: 0.2.0 
 
-## Please describe your issue. Provide extensive detail and images if possible.
+# Steps to reproduce the bug
+<!-- If you find the bug to be reproducable then please put the steps in here -->
+N / A

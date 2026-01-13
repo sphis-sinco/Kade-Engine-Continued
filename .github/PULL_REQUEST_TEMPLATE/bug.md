@@ -4,7 +4,11 @@ about: Fix a bug or critical performance issue
 title: 'Bug Fix: '
 labels: bug
 ---
-#### Please check for duplicates or similar PRs before creating this issue.
-## Does this PR close any issue(s)? If so, link them below.
+<!-- Please check for duplicates, similar PRs or closed PRs with the same fix --> 
 
-## Briefly describe the issue(s) fixed.
+# Issue fixed
+<!-- Briefly describe the issue(s) fixed. -->
+
+## Does this PR close any issue(s)?
+<!-- Is there are issues this PR is targetted to fix, link them below.-->
+N / A
