@@ -1,20 +1,9 @@
-package modding;
-
-import flixel.FlxState;
-import modding.events.simple.FocusEvent.FocusType;
-import flixel.util.FlxSignal;
-import modding.events.*;
-import modding.events.bases.*;
-import modding.events.basic.*;
-import modding.events.simple.*;
-import modding.scripting.*;
-import flixel.FlxG;
 #if FEATURE_MODCORE
 import polymod.backends.OpenFLBackend;
 import polymod.backends.PolymodAssets.PolymodAssetType;
-import polymod.format.ParseRules;
+import polymod.format.ParseRules.LinesParseFormat;
+import polymod.format.ParseRules.TextFileFormat;
 import polymod.Polymod;
-import polymod.fs.ZipFileSystem;
 #end
 
 /**
@@ -28,12 +17,9 @@ class ModCore
 	 * 
 	 * Remember to increment the major version if you make breaking changes to mods!
 	 */
-	static final API_VERSION = ">=0.2.0 <0.3.0";
+	static final API_VERSION = "0.1.0";
 
 	static final MOD_DIRECTORY = "mods";
-
-	// Use SysZipFileSystem on native and MemoryZipFilesystem on web.
-	public static var modFileSystem:Null<ZipFileSystem> = null;
 
 	public static function initialize()
 	{
@@ -76,10 +62,6 @@ class ModCore
 
 			// Parsing rules for various data formats.
 			parseRules: buildParseRules(),
-
-			// Parse hxc files and register the scripted classes in them.
-			useScriptedClasses: true,
-			loadScriptsAsync: #if html5 true #else false #end,
 		});
 
 		Debug.logInfo('Mod loading complete. We loaded ${loadedModList.length} / ${ids.length} mods.');
@@ -108,15 +90,6 @@ class ModCore
 			Debug.logTrace('  * $item');
 	}
 
-	public static function buildFileSystem():polymod.fs.ZipFileSystem
-	{
-		polymod.Polymod.onError = onPolymodError;
-		return new ZipFileSystem({
-			modRoot: MOD_DIRECTORY,
-			autoScan: true
-		});
-	}
-
 	static function getModIds():Array<String>
 	{
 		Debug.logInfo('Scanning the mods folder...');
@@ -131,11 +104,6 @@ class ModCore
 		var output = polymod.format.ParseRules.getDefault();
 		// Ensure TXT files have merge support.
 		output.addType("txt", TextFileFormat.LINES);
-		// Ensure script files have merge support.
-		output.addType('hscript', TextFileFormat.PLAINTEXT);
-		output.addType('hxs', TextFileFormat.PLAINTEXT);
-		output.addType('hxc', TextFileFormat.PLAINTEXT);
-		output.addType('hx', TextFileFormat.PLAINTEXT);
 
 		// You can specify the format of a specific file, with file extension.
 		// output.addFile("data/introText.txt", TextFileFormat.LINES)
@@ -147,16 +115,8 @@ class ModCore
 		return {
 			assetLibraryPaths: [
 				"default" => "./preload", // ./preload
-				"sm" => "./sm",
-				"songs" => "./songs",
-				"shared" => "./",
-				"tutorial" => "./tutorial",
-				"week1" => "./week1",
-				"week2" => "./week2",
-				"week3" => "./week3",
-				"week4" => "./week4",
-				"week5" => "./week5",
-				"week6" => "./week6"
+				"sm" => "./sm", "songs" => "./songs", "shared" => "./", "tutorial" => "./tutorial",
+				"week1" => "./week1", "week2" => "./week2", "week3" => "./week3", "week4" => "./week4", "week5" => "./week5", "week6" => "./week6"
 			]
 		}
 	}
@@ -193,98 +153,6 @@ class ModCore
 					case ERROR:
 						Debug.logError(error.message, null);
 				}
-		}
-	}
-
-	public static function forceReloadAssets():Void
-	{
-		if (modFileSystem == null)
-			modFileSystem = buildFileSystem();
-
-		// Forcibly clear scripts so that scripts can be edited.
-		ScriptManager.destroyScripts();
-		Polymod.clearScripts();
-
-		scriptInit();
-
-		loadModsById(getModIds());
-		ScriptManager.loadScripts();
-
-		if (FlxG.state != null)
-			FlxG.resetState();
-	}
-
-	static function scriptInit()
-	{
-		var signals:Map<String, Array<Dynamic>> = [
-			'focusGained' => [
-				FlxG.signals.focusGained,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.onFocusChange(new FocusEvent(FocusType.GAINED, script, CoolUtil.getCurrentState()));
-				})
-			],
-			'focusLost' => [
-				FlxG.signals.focusLost,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.onFocusChange(new FocusEvent(FocusType.LOST, script, CoolUtil.getCurrentState()));
-				})
-			],
-
-			'preStateSwitch' => [
-				FlxG.signals.preStateSwitch,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.onStateSwitch(new SwitchStateEvent(PRE, script, CoolUtil.getCurrentState()));
-				})
-			],
-			'postStateSwitch' => [
-				FlxG.signals.postStateSwitch,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.onStateSwitch(new SwitchStateEvent(POST, script, CoolUtil.getCurrentState()));
-				})
-			],
-
-			'preStateCreate' => [
-				FlxG.signals.preStateCreate,
-				function(state:FlxState) ScriptManager.callEvent(script ->
-				{
-					script.onCreate(new CreateEvent(PRE, script, CoolUtil.getCurrentState()));
-				})
-			],
-			'postStateCreate' => [
-				MusicBeatState.postStateCreate,
-				function(state:FlxState) ScriptManager.callEvent(script ->
-				{
-					script.onCreate(new CreateEvent(POST, script, CoolUtil.getCurrentState()));
-				})
-			],
-
-			'preUpdate' => [
-				FlxG.signals.preUpdate,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.onUpdate(new UpdateEvent(PRE, script, CoolUtil.getCurrentState()));
-				})
-			],
-			'postUpdate' => [
-				FlxG.signals.postUpdate,
-				function() ScriptManager.callEvent(script ->
-				{
-					script.onUpdate(new UpdateEvent(PRE, script, CoolUtil.getCurrentState()));
-				})
-			],
-		];
-
-		for (signalName => signalVariables in signals)
-		{
-			// var signalClass:FlxSignal = signalVariables[0];
-			var signalClass:FlxTypedSignal<Any->Void> = signalVariables[0];
-
-			if (!signalClass.has(_ -> signalVariables[1]))
-				signalClass.add(_ -> signalVariables[1]);
 		}
 	}
 	#end
