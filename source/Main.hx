@@ -93,7 +93,7 @@ class Main extends Sprite
 		Debug.onInitProgram();
 
 		// Gotta run this before any assets get loaded.
-		ModCore.initialize();
+		modding.ModCore.initialize();
 
 		#if !mobile
 		fpsCounter = new FPSText(10, 3, 0xFFFFFF);
