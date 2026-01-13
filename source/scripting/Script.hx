@@ -121,7 +121,12 @@ class Script extends Iris
 			"Main" => Main,
 			"window" => lime.app.Application.current.window,
 
-			'trace' => Log.trace,
+			'trace' => function(v, ?p)
+			{
+				return Debug.logTrace(v, {
+					className: config.name
+				});
+			},
 
 			// Flixel related stuff
 			"FlxG" => flixel.FlxG,
