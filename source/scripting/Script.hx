@@ -58,7 +58,7 @@ class Script extends Iris
 				if (content.extension() == Path.extension(Paths.haxe('')) #if sys
 					&& !FileSystem.isDirectory(dir.addTrailingSlash() + content) #end)
 				{
-					var newMiscScript:MiscScript = new MiscScript(content.withoutExtension(), dirSplit.join('/').addTrailingSlash());
+					var newMiscScript:MiscScript = new MiscScript(content.withoutExtension(), dirSplit.join('/'));
 					miscScripts.push(newMiscScript);
 				}
 				else
@@ -96,9 +96,9 @@ class Script extends Iris
 	override public function new(path:String, scriptName:String)
 	{
 		if (!Paths.doesTextAssetExist(Paths.haxe(path)))
-			Debug.logError('Cannot find script: ' + Path.directory(Paths.haxe('')) + path);
+			Debug.logError('Cannot find script: ' + Paths.haxe(path));
 		else
-			Debug.logInfo('Found script: ' + Path.directory(Paths.haxe('')) + path);
+			Debug.logInfo('Found script: ' + Paths.haxe(path));
 
 		super((Paths.doesTextAssetExist(Paths.haxe(path)) ? Assets.getText(Paths.haxe(path)) : 'function create() { trace("couldnt find script : ${Paths.haxe(path)}"); }'),
 			{

@@ -21,6 +21,7 @@ class ModList
 			trace('Enabled mod: $id');
 			enabledMods.push(id);
 		}
+		FlxG.save.data.enabledMods = enabledMods;
 	}
 
 	public static function init()

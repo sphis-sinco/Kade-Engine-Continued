@@ -1825,6 +1825,7 @@ class EnableAllMods extends Option
 		ModCore.reloadMods();
 
 		display = updateDisplay();
+		FlxG.resetState();
 		return true;
 	}
 
@@ -1845,41 +1846,58 @@ class ToggleMod extends Option
 		description = desc;
 	}
 
-	override function left():Bool {
+	override function left():Bool
+	{
 		i--;
+		if (i < 0)
+			i = 0;
 		display = updateDisplay();
 		return true;
 	}
 
-	override function right():Bool {
-		i--;
+	override function right():Bool
+	{
+		i++;
+		if (i > ModCore.getModIds().length - 1)
+			i = ModCore.getModIds().length - 1;
 		display = updateDisplay();
 		return true;
 	}
 
 	public override function press():Bool
 	{
-		#if FEATURE_MODCORE
-		@:privateAccess
-		ModList.enabledMods = ModCore.getModIds();
-		#end
+		if (ModCore.getModIds().length == 0)
+			return false;
+
+		ModList.toggleMod(currentMod);
 		ModCore.reloadMods();
 
 		display = updateDisplay();
+		
 		return true;
 	}
 
 	private override function updateDisplay():String
 	{
+		if (ModCore.getModIds().length == 0)
+			return '[ No mod. ]';
+
 		currentMod = ModCore.getModIds()[i];
-		var indexOfCurMod = ModList.enabledMods.indexOf(currentMod);
+		var indexOfCurMod = ModCore.getModIds().indexOf(currentMod);
+		var status = ModList.getModEnabled(currentMod) ? 'Enabled' : 'Disabled';
 
-		var d = '[$currentMod / ${ModList.getModEnabled(currentMod) ? 'Enabled' : 'DIsabled'} ]';
+		var d = '[';
 
-		if (indexOfCurMod != 0)
-			d = '< $d';
+		trace(indexOfCurMod);
+		if (indexOfCurMod > 0)
+			d += '< ';
+
+		d += ' ( $currentMod / $status ) ';
+
 		if (indexOfCurMod < ModList.enabledMods.length - 1)
-			d = '$d >';
+			d += ' >';
+
+		d += ']';
 
 		return d;
 	}

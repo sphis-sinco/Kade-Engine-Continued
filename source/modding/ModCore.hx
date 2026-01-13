@@ -41,12 +41,15 @@ class ModCore
 		#end
 	}
 
+	static var lastFoundModsLength:Int = 0;
+
 	public static function getModIds():Array<String>
 	{
 		#if FEATURE_MODCORE
-		Debug.logInfo('Scanning the mods folder...');
 		var modMetadata = Polymod.scan({modRoot: MOD_DIRECTORY});
-		Debug.logInfo('Found ${modMetadata.length} mods when scanning.');
+		if (lastFoundModsLength != modMetadata.length)
+			Debug.logInfo('Found ${modMetadata.length} mods when scanning.');
+		lastFoundModsLength = modMetadata.length;
 		var modIds = [for (i in modMetadata) i.id];
 		#else
 		var modIds = [];
