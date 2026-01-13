@@ -1813,11 +1813,17 @@ class EnableAllMods extends Option
 	public function new(desc:String)
 	{
 		super();
-		description = desc;
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be used in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function press():Bool
 	{
+		if (OptionsMenu.isInPause)
+			return false;
+
 		#if FEATURE_MODCORE
 		@:privateAccess
 		ModList.enabledMods = ModCore.getModIds();
@@ -1825,7 +1831,7 @@ class EnableAllMods extends Option
 		ModCore.reloadMods();
 
 		display = updateDisplay();
-		
+
 		Main.reloadReset();
 		FlxG.resetState();
 
@@ -1843,17 +1849,23 @@ class DisableAllMods extends Option
 	public function new(desc:String)
 	{
 		super();
-		description = desc;
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be used in the pause menu.";
+		else
+			description = desc;
 	}
 
 	public override function press():Bool
 	{
+		if (OptionsMenu.isInPause)
+			return false;
+
 		for (mod in ModList.enabledMods)
 			ModList.toggleMod(mod);
 		ModCore.reloadMods();
 
 		display = updateDisplay();
-		
+
 		Main.reloadReset();
 		FlxG.resetState();
 
@@ -1874,11 +1886,17 @@ class ToggleMod extends Option
 	public function new(desc:String)
 	{
 		super();
-		description = desc;
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be used in the pause menu.";
+		else
+			description = desc;
 	}
 
 	override function left():Bool
 	{
+		if (OptionsMenu.isInPause)
+			return false;
+
 		i--;
 		if (i < 0)
 			i = 0;
@@ -1888,6 +1906,8 @@ class ToggleMod extends Option
 
 	override function right():Bool
 	{
+		if (OptionsMenu.isInPause)
+			return false;
 		i++;
 		if (i > ModCore.getModIds().length - 1)
 			i = ModCore.getModIds().length - 1;
@@ -1897,6 +1917,8 @@ class ToggleMod extends Option
 
 	public override function press():Bool
 	{
+		if (OptionsMenu.isInPause)
+			return false;
 		if (ModCore.getModIds().length == 0)
 			return false;
 
@@ -1906,7 +1928,7 @@ class ToggleMod extends Option
 		FlxG.resetState();
 
 		display = updateDisplay();
-		
+
 		return true;
 	}
 
