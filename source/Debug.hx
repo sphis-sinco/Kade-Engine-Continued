@@ -339,7 +339,7 @@ class Debug
 			return inArray;
 
 		// Format the position ourselves.
-		var output:Array<Dynamic> = ['(${pos.className}:${pos.lineNumber} / ${pos.methodName}): '];
+		var output:Array<Dynamic> = ['(${pos.className.replace('.', '/')}:${pos.lineNumber} / ${pos.methodName}): '];
 
 		return output.concat(inArray);
 	}
