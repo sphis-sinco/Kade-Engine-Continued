@@ -4,7 +4,7 @@
 - Added: StoryMenuState has an instance
 - Added: FreeplayState has an instance
 - Added: MainMenuState has an instance
-- 💖 Fixed: Character camera positions are correct again
+- 💖 Fixed: Character camera positions are correct again ([Issue #2](https://github.com/sphis-sinco/Funkin-Indie-Edition/issues/2))
 - 💖 Changed: Mod `api_version` minimum is `0.2.0` now (can't be `0.3.0` or above)
 - 💖 Added: F3 + P Key combo : Reloads scripts
 - 💖 Added: SCRIPTING SUPPORT!! (Right now they're backround things (Misc Scripts!) but they'll be expanded!)
