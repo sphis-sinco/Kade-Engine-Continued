@@ -1,0 +1,8 @@
+{
+	"title": "Ugly Mod",
+	"description": "This is an example mod.",
+	"author": "Macohi",
+	"api_version": "0.2.0",
+	"mod_version": "1.0.0",
+	"license": "GPLv3"
+}
