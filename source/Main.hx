@@ -156,7 +156,7 @@ class Main extends Sprite
 				trace('reset');
 
 				Script.loadMiscScripts();
-				LoadingState.loadAndSwitchState(new MainMenuState(), true);
+				// LoadingState.loadAndSwitchState(new MainMenuState(), true);
 			}
 
 			Script.callOnMiscScripts('postUpdate', []);
