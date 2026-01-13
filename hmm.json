@@ -41,11 +41,18 @@
     },
     {
       "name": "hscript",
+      "type": "git",
+      "dir": null,
+      "ref": "8c1d238b069ef97cec13f5121b29d2afe2b8985d",
+      "url": "https://github.com/FunkinCrew/hscript"
+    },
+    {
+      "name": "hxcpp",
       "type": "haxelib",
       "version": null
     },
     {
-      "name": "hxcpp",
+      "name": "hxcpp-debug-server",
       "type": "haxelib",
       "version": null
     },
@@ -89,17 +96,8 @@
     },
     {
       "name": "polymod",
-      "type": "git",
-      "dir": null,
-      "ref": null,
-      "url": "https://github.com/larsiusprime/polymod.git"
-    },
-    {
-      "name": "polymod",
-      "type": "git",
-      "dir": null,
-      "ref": null,
-      "url": "https://github.com/larsiusprime/polymod.git"
+      "type": "haxelib",
+      "version": null
     },
     {
       "name": "thx.core",
