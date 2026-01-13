@@ -117,7 +117,6 @@
 	<haxelib name="flixel" />
 
 	<haxelib name="flixel-addons" />
-
 	<haxelib name="hscript" />
 
 	<haxelib name="actuate" />
@@ -126,11 +125,18 @@
 
 	<haxelib name="flixel-ui" />
 
-	<haxelib name="polymod" />
+	<haxelib name="polymod"/>
 
-	<haxelib name="discord_rpc" if="desktop" />
-	<haxelib name="linc_luajit" if="desktop" />
-	<haxelib name="hxvm-luajit" if="desktop" />
+	<haxelib name="discord_rpc" if="desktop"/>
+	<haxelib name="linc_luajit" if="desktop"/>
+	<haxelib name="hxvm-luajit" if="desktop"/>
+	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
+
+	<!-- <haxelib name="markdown" /> -->
+	<!-- <haxelib name="HtmlParser" /> -->
+
+	<!--In case you want to use nape with flixel-->
+	<!--<haxelib name="nape-haxe4" />-->
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
@@ -182,11 +188,11 @@
 	<haxedef name="FEATURE_MULTITHREADING" if="cpp" />
 
 	<!-- Defines whether the Mods menu will display before launching. -->
-	<haxedef name="FEATURE_MODCORE" if="desktop" />
+  <haxedef name="FEATURE_MODCORE" if="desktop" />
+  
+	<define name="hscriptPos"/>
 
-	<define name="hscriptPos" />
-
-	<!-- Options for Polymod -->
+  	<!-- Options for Polymod -->
 	<section if="polymod">
 		<haxedef name="POLYMOD_USE_NAMESPACE" value="false" />
 

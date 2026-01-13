@@ -2,7 +2,7 @@
 	"lineEnds": {
 		"leftCurly": "both",
 		"rightCurly": "both",
-		"emptyCurly": "noBreak",
+		"emptyCurly": "break",
 		"objectLiteralCurly": {
 			"leftCurly": "after"
 		}
